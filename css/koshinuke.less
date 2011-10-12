@@ -1,0 +1,498 @@
+@import "reset.less";
+
+// Core
+@import "preboot.less";
+@import "scaffolding.less";
+
+@import "radius.less";
+
+// Styled patterns and elements
+@import "type.less";
+@import "tables.less";
+@import "patterns.less";
+
+.topbar {
+	.project-name {
+		position: relative;
+    	a {
+			float: left;
+			display: block;
+			padding: 8px 20px 12px;
+			margin-left: -20px; // negative indent to left-align the text down the page
+			color: @white;
+			font-size: 20px;
+			font-weight: 200;
+			line-height: 1;
+		    &:hover {
+		      //color: #fff;
+		      //text-decoration: none;
+		    }
+		}
+	}
+	.dropdown-toggle:hover,
+	.dropdown.open .dropdown-toggle {
+		background: #444;
+		background: rgba(255,255,255,.05);
+	}
+	.dropdown-menu {
+		background-color: #333;
+		outline: none;
+		
+		.dropdown-toggle {
+			color: #fff;
+			&.open {
+				background: #444;
+				background: rgba(255,255,255,.05);
+			}
+		}
+		.goog-menuitem a {
+			padding: 4px 15px 4px 20px;
+			color: #999;
+			text-shadow: 0 1px 0 rgba(0,0,0,.5);
+			&:hover {
+				#gradient > .vertical(#292929,#191919);
+				color: #fff;
+			}
+		}
+		
+		.divider {
+			background-color: #222;
+			border-color: #444;
+		}
+	}
+
+    #project-menu.dropdown-menu {
+		padding: 8px 0px 12px 0px;
+		margin-left: -20px; // negative indent to left-align the text down the page
+		color: @white;
+		font-size: 20px;
+		font-weight: 200;
+		line-height: 1;
+		background-color: #222;
+		#gradient > .vertical(#333, #222);
+    }
+}
+// Topbar Nav
+.nav {
+  display: block;
+  float: left;
+  margin: 0 10px 0 0;
+  position: relative;
+  left: 0;
+  outline: none;
+  
+  .goog-tab {
+    display: block;
+    float: left;
+  }
+  a {
+    display: block;
+    float: none;
+    padding: 10px 10px 11px;
+    line-height: 19px;
+    text-decoration: none;
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+ 
+  .goog-tab-selected a {
+    background-color: #333;
+    background-color: rgba(255,255,255,.05);
+    color: @white;
+    text-decoration: none;
+  }
+
+  // Secondary (floated right) nav in topbar
+  &.secondary-nav {
+    float: right;
+    margin-left: 10px;
+    margin-right: 0;
+    // backwards compatibility
+    .menu-dropdown,
+    .dropdown-menu {
+      right: 0;
+    }
+  }
+  // Dropdowns within the .nav
+  .dropdown-toggle:hover,
+  .dropdown.open .dropdown-toggle {
+    background: #444;
+    background: rgba(255,255,255,.05);
+  }
+  .dropdown-menu {
+    background-color: #333;
+    .dropdown-toggle {
+      color: #fff;
+      &.open {
+        background: #444;
+        background: rgba(255,255,255,.05);
+      }
+    }
+    .goog-menuitem a {
+      color: #999;
+      text-shadow: 0 1px 0 rgba(0,0,0,.5);
+      &:hover {
+        #gradient > .vertical(#292929,#191919);
+        color: #fff;
+      }
+    }
+    .divider {
+      background-color: #222;
+      border-color: #444;
+    }
+  }
+}
+
+.sidemenu_projects {
+	outline: none;
+	position: fixed;
+	left: 0px;
+	border-right: 1px solid #ddd;
+	height: 100%;
+	
+	padding: 0 0 5px 5px;
+	.goog-tab {
+		margin-bottom: 5px;
+		
+		position: relative;
+		left: 1px;
+		
+		> a {
+			padding: 3px 0 3px 3px;
+			display: block;
+			
+			&:hover {
+				background-color: #eee;
+				text-decoration: none;
+				#radius > .left(4px);
+			}
+		}
+	}
+	.goog-tab-selected > a {
+		border: 1px solid #ddd;
+		border-right: 0;
+		background-color: #fff;
+		color: @gray;
+		#radius > .left(4px);
+	}
+}
+
+.repo-urls {
+	min-width: 750px;
+	.repo_name {
+		float: left;
+		outline: none;
+		a {
+			display: block;
+			padding: 4px 9px 4px 9px;
+			color: @black;
+			#gradient > .vertical(@grayLight, @gray);
+			text-shadow: 1px 1px 0 @grayLight;
+			text-decoration: none;
+			font-weight: bold;
+			&:hover {
+				color: @white;
+				text-shadow: -1px -1px 0 @grayLight;
+				#gradient > .vertical(@blue, @blueDark);
+				
+			}
+		}
+		.goog-menu {
+			outline: none;
+			z-index: 1001;
+			padding: 0;
+			.border-radius(3px);
+		}
+		.goog-menuitem a:hover {
+			.border-radius(3px);
+		}
+		.divider {
+		}
+	}
+	#url-box {
+		display: block;
+		float: left;
+		width: 320px;
+		
+		height: @baseline;
+		padding: 13px 9px 13px 9px;
+		font-size: 13px;
+		line-height: @baseline;
+		color: @gray;
+		background-color: @white;
+	}
+	#protocols {
+		outline: none;
+		div {
+			float: left;
+			a {
+				display: block;
+				padding: 4px 9px 4px 9px;
+				color: @black;
+				background-color: @grayLighter;
+				text-shadow: 1px 1px 0 @white;
+				text-decoration: none;
+				font-weight: bold;
+				&:hover {
+					color: @white;
+					text-shadow: -1px -1px 0 @grayLight;
+					#gradient > .vertical(@blue, @blueDark);
+				}
+			}
+		}
+		div.goog-tab-selected {
+			> a {
+				#gradient > .vertical(@grayLighter, @grayLight);
+				text-shadow: 1px 1px 0 @grayLighter;
+				&:hover {
+					color: @black;
+					#gradient > .vertical(@grayLighter, @grayLight);
+				}
+			}
+		}
+	}
+	.begin {
+		border: 1px solid #ccc;
+		#radius > .left(3px);
+	}
+	.middle {
+		border: 1px solid #ccc;
+		border-left: 0;
+	}
+	.end {
+		border: 1px solid #ccc;
+		border-left: 0;
+		#radius > .right(3px);
+	}
+	#protocols, #clip-container {
+		float: left;
+	}
+	.desc-container {
+		padding: 4px;
+	}
+}
+
+// breadcrumbs
+.breadcrumbs {
+	position: relative;
+	clear: both;
+	
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	float: left;
+	
+	border: 1px solid #CCC;
+	min-width: 200px;
+	.border-radius(3px);
+
+	background: #F0F0F0;
+	width: 100%;
+
+	li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		float: left;
+
+		border-right: none;
+		background: url(../images/separator.gif) no-repeat right center;
+		
+		padding: 5px 15px 5px 15px;
+		height: 16px;
+		
+		a {
+			font-size: 11px;
+			color: #666666;
+			text-decoration: none;
+		}
+		a:hover {
+			color: #0A8ECC;
+		}
+		a.home {
+			background: url(../images/home.gif) no-repeat left center;
+			padding-left: 20px;
+		}
+	}
+	
+	.goog-menu {
+		z-index: 1001;
+		padding: 3px;
+		background: #333333;
+		font-size: 11px;
+		width: 180px;
+		top: 25px;
+		.border-radius(3px);
+		
+		position: absolute;
+		outline: none;
+
+		.goog-menuitem {
+			float: left;
+			width: 100%;
+			border-right: none;
+			height: auto;
+			
+			a {
+				text-decoration: none;
+				color: #CCCCCC !important;
+				display: block;
+				padding: 4px;
+				border-bottom: 1px dotted #666666;
+			}
+			a:hover {
+				background: #444444;
+			}
+		}
+		
+		.goog-menuitem:last-child a {
+			border-bottom: none;
+		}
+	}
+}
+
+.goog-tabs {
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+  .clearfix();
+  > div.goog-tab {
+    user-select: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+    float: left;
+    > a {
+      display: block;
+    }
+  }
+}
+
+.goog-tabs {
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  outline: none;
+  
+    div.goog-tab {
+    position: relative; // For the dropdowns mostly
+    top: 1px;
+    > a {
+      margin-right: 2px;
+      padding: 0 15px;
+      line-height: (@baseline * 2) - 1;
+      #radius > .top(4px);
+      
+      &:hover {
+        background-color: #eee;
+        border-bottom: 1px solid #ddd;
+        text-decoration: none;
+      }
+    }
+    &.goog-tab-selected > a {
+      background-color: #fff;
+      padding: 0 14px;
+      border: 1px solid #ddd;
+      border-bottom: 0;
+      color: @gray;
+    }
+  }
+	.dropdown.open {
+		.dropdown-toggle {
+			color: #fff;
+			background: #ccc;
+			background: rgba(0,0,0,.3);
+		}
+		.dropdown-menu {
+			display: block;
+		}
+	}
+	
+  .dropdown-toggle:after {
+    border-top-color: #999;
+    margin-top: 15px;
+    margin-left: 5px;
+  }
+// Open state for the dropdown
+  .dropdown.open .dropdown-toggle:after {
+    border-top-color: #555;
+  }
+}
+
+#tags_menu.dropdown-menu {
+	outline: none;
+	top: 35px;
+	border-width: 0 1px 1px 1px;
+	#radius > .bottom(6px);
+	z-index: 1001;
+	padding: 0;
+    
+	.goog-menuseparator {
+		border-top: 1px dotted @gray;
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.zebra-striped {
+  tbody {
+    tr:nth-child(odd) td {
+      background-color: #f9f9f9;
+    }
+    tr:hover td {
+      background-color: #f5f5f5;
+    }
+  }
+
+  // Tablesorting styles w/ jQuery plugin
+  .header {
+    user-select: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+    cursor: pointer;
+    &:after {
+      content: "";
+      float: right;
+      margin-top: 7px;
+      border-width: 0 4px 4px;
+      border-style: solid;
+      border-color: #000 transparent;
+      visibility: hidden;
+    }
+  }
+  // Style the sorted column headers (THs)
+  .goog-tablesorter-sorted,
+  .goog-tablesorter-sorted-reverse {
+    background-color: rgba(141,192,219,.25);
+    text-shadow: 0 1px 1px rgba(255,255,255,.75);
+    .border-radius(3px 3px 0 0);
+  }
+  // Style the ascending (reverse alphabetical) column header
+  .header:hover {
+    &:after {
+      visibility:visible;
+    }
+  }
+  // Style the descending (alphabetical) column header
+  .goog-tablesorter-sorted,
+  .goog-tablesorter-sorted:hover {
+    &:after {
+      visibility:visible;
+      .opacity(60);
+    }
+  }
+  // Style the ascending (reverse alphabetical) column header
+  .goog-tablesorter-sorted-reverse {
+    &:after {
+      border-bottom: none;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid #000;
+      visibility:visible;
+      .box-shadow(none); //can't add boxshadow to downward facing arrow :(
+      .opacity(60);
+    }
+  }
+}
