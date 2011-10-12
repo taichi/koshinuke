@@ -35,7 +35,7 @@ org.koshinuke.main = function() {
 			// hrefの中身もね。
 			parent.replaceChild(newone.cloneNode(), oldone);
 			el.replaceChild(oldone.cloneNode(), newone);
-			
+
 		});
 	});
 	goog.events.listen(projmenu, goog.ui.Component.EventType.ACTION, function(e) {
@@ -45,7 +45,7 @@ org.koshinuke.main = function() {
 	var projSideTab = new goog.ui.TabBar();
 	projSideTab.currentPane = 'git_contents';
 	projSideTab.decorate(goog.dom.getElement('sidemenu_projects'));
-	
+
 	function switchProjectSideTab(e, active) {
 		var el = goog.dom.query('a',e.target.getElement())[0];
 		var path = el.getAttribute(active);
@@ -53,7 +53,8 @@ org.koshinuke.main = function() {
 		var next = el.getAttribute('for');
 		switchTab(projSideTab, next);
 	}
-	
+
+
 	goog.events.listen(projSideTab, goog.ui.Component.EventType.SELECT, function(e) {
 		switchProjectSideTab(e, "active");
 	});
@@ -67,7 +68,6 @@ org.koshinuke.main = function() {
 			console.log(el);
 		});
 	});
-	
 	var repomenu = new goog.ui.PopupMenu();
 	var reposel = goog.dom.getElement('repo_menu');
 	repomenu.setToggleMode(true);
@@ -78,7 +78,6 @@ org.koshinuke.main = function() {
 			console.log(el);
 		});
 	});
-	
 	var projMainTab = new goog.ui.TabBar();
 	// hack
 	projMainTab.currentPane = 'resource_pane';
@@ -101,6 +100,21 @@ org.koshinuke.main = function() {
 		var el = e.target.getElement();
 		var next = el.getAttribute('for');
 		switchTab(projMainTab, next);
+	});
+
+	var tagstable = new goog.ui.TableSorter();
+	var tagsEl = goog.dom.getElement('tags_table');
+	tagstable.decorate(tagsEl);
+	tagstable.setDefaultSortFunction(goog.ui.TableSorter.alphaSort);
+	tagstable.setSortFunction(0, goog.ui.TableSorter.noSort);
+	
+	goog.events.listen(tagsEl, goog.events.EventType.CLICK, function(e) {
+		var maybeA = e.target;
+		var next = maybeA.getAttribute('for');
+		if(next) {
+			e.preventDefault();
+			switchTab(projMainTab, next);
+		}
 	});
 
 	goog.dom.query('.tooltipable').forEach(function(el) {
@@ -234,13 +248,12 @@ org.koshinuke.main = function() {
 	});
 	//
 	//
-	goog.dom.query('.resource_table').forEach(function(el) {
+	goog.array.forEach(goog.dom.query('.resource_table'), function(el) {
 		var component = new goog.ui.TableSorter();
 		component.decorate(el);
+		component.setDefaultSortFunction(goog.ui.TableSorter.alphaSort);
 		component.setSortFunction(0, goog.ui.TableSorter.noSort);
-		component.setSortFunction(1, goog.ui.TableSorter.alphaSort);
-		component.setSortFunction(2, goog.ui.TableSorter.alphaSort);
-		component.setSortFunction(3, goog.ui.TableSorter.alphaSort);
 	});
+
 };
 goog.exportSymbol('org.koshinuke.main', org.koshinuke.main);
