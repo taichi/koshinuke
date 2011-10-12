@@ -50,7 +50,7 @@ org.koshinuke.main = function() {
 		var el = goog.dom.query('a',e.target.getElement())[0];
 		var path = el.getAttribute(active);
 		el.firstChild.src = path;
-		var next = el.getAttribute('contentsid');
+		var next = el.getAttribute('for');
 		switchTab(projSideTab, next);
 	}
 	
@@ -86,7 +86,6 @@ org.koshinuke.main = function() {
 
 	function switchTab(tabbar, next) {
 		function toggleTab(paneId, is) {
-			
 			var content = goog.dom.getElement(paneId);
 			if(content) {
 				goog.style.showElement(content, is);
@@ -100,26 +99,9 @@ org.koshinuke.main = function() {
 
 	goog.events.listen(projMainTab, goog.ui.Component.EventType.ACTION, function(e) {
 		var el = e.target.getElement();
-		var next = el.getAttribute('contentsid');
+		var next = el.getAttribute('for');
 		switchTab(projMainTab, next);
 	});
-
-	// var tagsmenu = new goog.ui.PopupMenu();
-	// var tagsel = goog.dom.getElement('tags_menu');
-	// tagsmenu.setToggleMode(true);
-	// tagsmenu.decorate(tagsel);
-	// goog.events.listen(tagsmenu, goog.ui.Component.EventType.ACTION, function(e) {
-		// var next = e.target.getElement().getAttribute('for');
-		// // href から取るべきじゃね？
-		// switchTab(projMainTab, next);
-		// projMainTab.setSelectedTabIndex(1);
-	// });
-	// goog.events.listen(tagsmenu, goog.ui.Component.EventType.BEFORE_SHOW, function(e) {
-		// goog.dom.classes.add(e.target.getAttachedElement().parentNode, "open");
-	// });
-	// goog.events.listen(tagsmenu, goog.ui.Component.EventType.HIDE, function(e) {
-		// goog.dom.classes.remove(e.target.getAttachedElement().parentNode, "open");
-	// });
 
 	goog.dom.query('.tooltipable').forEach(function(el) {
 		var tooltip = new goog.ui.Tooltip(el);
