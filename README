@@ -6,8 +6,6 @@ https://gist.github.com/1196841
 
 this project is mockup.
 
-if you want to execute this project.
+if you want to execute this project,
 
-Window > preferences
-	General > Workspace > Linked Resources
-		push "New" , set "CLOSURE_LIB" and closure-library path.
+svn co http://closure-library.googlecode.com/svn/trunk/ closure-library
