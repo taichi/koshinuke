@@ -14,11 +14,4 @@
 	<natures>
 		<nature>com.aptana.projects.webnature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>closure-library</name>
-			<type>2</type>
-			<locationURI>CLOSURE_LIB</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>
