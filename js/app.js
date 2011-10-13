@@ -13,12 +13,14 @@ goog.require('goog.ui.Tooltip');
 goog.require('goog.ui.PopupMenu');
 goog.require('goog.ui.TableSorter');
 
+goog.require('org.koshinuke.positioning.GravityPosition');
+
 org.koshinuke.main = function() {
 	var topTab = new goog.ui.TabBar();
 	topTab.decorate(goog.dom.getElement('toptab'));
 	topTab.setSelectedTabIndex(0);
 	goog.events.listen(topTab, goog.ui.Component.EventType.SELECT, function(e) {
-		console.log('toptab')
+		console.log('toptab');
 		console.log(e);
 
 	});
@@ -139,57 +141,6 @@ org.koshinuke.main = function() {
 	});
 	//
 	//
-	/**
-	 * @constructor
-	 * @extends {goog.positioning.AbstractPosition}
-	 */
-	GravityPosition = function(el, g, margin) {
-		this.baseEl_ = el;
-		this.gravity_ = g ? g : 'n';
-		this.margin_ = margin ? margin : 0;
-	}
-	goog.inherits(GravityPosition, goog.positioning.AbstractPosition);
-	GravityPosition.prototype.reposition = function(element, popupCorner, opt_margin, opt_preferredSize) {
-		var size = goog.style.getSize(this.baseEl_);
-		var basePos = goog.style.getPosition(this.baseEl_);
-		var pos = {
-			left : basePos.x,
-			top : basePos.y,
-			height : size.height,
-			width : size.width
-		};
-		var actualWidth = element.offsetWidth;
-		actualHeight = element.offsetHeight;
-		var gravity = this.gravity_;
-		var tp;
-		switch (gravity.charAt(0)) {
-			case 'n':
-				tp = {
-					top : pos.top + pos.height + this.margin_,
-					left : pos.left + pos.width / 2 - actualWidth / 2
-				};
-				break;
-			case 's':
-				tp = {
-					top : pos.top - actualHeight - this.margin_,
-					left : pos.left + pos.width / 2 - actualWidth / 2
-				};
-				break;
-			case 'e':
-				tp = {
-					top : pos.top + pos.height / 2 - actualHeight / 2,
-					left : pos.left - actualWidth - this.margin_
-				};
-				break;
-			case 'w':
-				tp = {
-					top : pos.top + pos.height / 2 - actualHeight / 2,
-					left : pos.left + pos.width + this.margin_
-				};
-				break;
-		}
-		goog.style.setPosition(element, tp.left, tp.top);
-	};
 	function clipHtml(text) {
 		return '<div><div class="twipsy-arrow"></div><div class="twipsy-inner">' + text + '</div></div>';
 	}
@@ -206,7 +157,7 @@ org.koshinuke.main = function() {
 	clip['addEventListener']('onMouseOver', function(client) {
 		var el = goog.dom.getElement('clip-btn');
 		el.setAttribute("src", "images/copy_button_over.png");
-		copyTip.showForElement(el, new GravityPosition(el, 'w', 3));
+		copyTip.showForElement(el, new org.koshinuke.positioning.GravityPosition(el, 'w', 3));
 	});
 	clip['addEventListener']('onMouseOut', function(client) {
 		goog.dom.getElement('clip-btn').setAttribute("src", "images/copy_button_up.png");
@@ -224,7 +175,7 @@ org.koshinuke.main = function() {
 	});
 	clip['addEventListener']('onComplete', function(client, text) {
 		var el = goog.dom.getElement('clip-btn');
-		compTip.showForElement(el, new GravityPosition(el, 'w', 3));
+		compTip.showForElement(el, new org.koshinuke.positioning.GravityPosition(el, 'w', 3));
 	});
 	clip['glue']("clip-btn", "clip-container");
 	goog.events.listen(goog.dom.getElement("url-box"), goog.events.EventType.CLICK, function(e) {
