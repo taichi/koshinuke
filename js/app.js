@@ -82,7 +82,7 @@ org.koshinuke.main = function() {
 	});
 	var projMainTab = new goog.ui.TabBar();
 	// hack
-	projMainTab.currentPane = 'resource_pane';
+	projMainTab.currentPane = 'branch_pane';
 	projMainTab.decorate(goog.dom.getElement('project_main_tab'));
 
 	function switchTab(tabbar, next) {
@@ -98,25 +98,23 @@ org.koshinuke.main = function() {
 		tabbar.currentPane = next;
 	}
 
+
 	goog.events.listen(projMainTab, goog.ui.Component.EventType.ACTION, function(e) {
 		var el = e.target.getElement();
 		var next = el.getAttribute('for');
 		switchTab(projMainTab, next);
 	});
 
-	var tagstable = new goog.ui.TableSorter();
-	var tagsEl = goog.dom.getElement('tags_table');
-	tagstable.decorate(tagsEl);
-	tagstable.setDefaultSortFunction(goog.ui.TableSorter.alphaSort);
-	tagstable.setSortFunction(0, goog.ui.TableSorter.noSort);
-	
-	goog.events.listen(tagsEl, goog.events.EventType.CLICK, function(e) {
-		var maybeA = e.target;
-		var next = maybeA.getAttribute('for');
-		if(next) {
-			e.preventDefault();
-			switchTab(projMainTab, next);
-		}
+	goog.array.forEach(["branch_table", "tags_table"], function(id) {
+		var tagsEl = goog.dom.getElement(id);
+		goog.events.listen(tagsEl, goog.events.EventType.CLICK, function(e) {
+			var maybeA = e.target;
+			var next = maybeA.getAttribute('for');
+			if(next) {
+				e.preventDefault();
+				switchTab(projMainTab, next);
+			}
+		});
 	});
 
 	goog.dom.query('.tooltipable').forEach(function(el) {
@@ -199,12 +197,11 @@ org.koshinuke.main = function() {
 	});
 	//
 	//
-	goog.array.forEach(goog.dom.query('.resource_table'), function(el) {
+	goog.array.forEach(goog.dom.query('.icon_table'), function(el) {
 		var component = new goog.ui.TableSorter();
 		component.decorate(el);
 		component.setDefaultSortFunction(goog.ui.TableSorter.alphaSort);
 		component.setSortFunction(0, goog.ui.TableSorter.noSort);
 	});
-
 };
 goog.exportSymbol('org.koshinuke.main', org.koshinuke.main);

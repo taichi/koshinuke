@@ -163,7 +163,7 @@ __    _          _       _   _       _
 							<!-- パンくずリスト、サイドメニュー、リソースタブ辺りのリンククリックから、pjaxで さし変わる。-->
 							<div class="tab-container">
 								<div id="project_main_tab" class="goog-tab-bar goog-tabs">
-									<div class="goog-tab goog-tab-selected" for="resource_pane">
+									<div class="goog-tab goog-tab-selected" for="branch_pane">
 										<a href="#Branches">Branches</a>
 									</div>
 									<div class="goog-tab dropdown" for="tags_pane">
@@ -178,27 +178,52 @@ __    _          _       _   _       _
 								</div>
 							</div><!-- <div class="tab-container"> -->
 							<div class="panes">
-								<div id="branch_pane" style="display: none;">
-									<table class="zebra-striped branch_table" summary="branch viewing">
+								<div id="branch_pane">
+									<table id="branch_table" class="zebra-striped icon_table" summary="branch viewing">
 										<thead>
 											<tr>
 												<th class="icon"></th>
 												<th class="name header">name</th>
 												<th class="timestamp header">timestamp</th>
-												<th class="commitmessage header">last message</th>
-												<td></td>
+												<th class="commitmessage header">message</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
 												<td><img src="images/arrow_branch.png" alt="branch" /></td>
-												<td></td>
+												<td><a href="#" for="resource_pane">master</a></td>
+												<td>2011-08-31 12:31:24</td>
+												<td>first commit.</td>
+											</tr>
+											<tr>
+												<td><img src="images/arrow_branch.png" alt="branch" /></td>
+												<td><a href="#" for="resource_pane">develop</a></td>
+												<td>2011-09-12 12:31:24</td>
+												<td>at the begining of test</td>
+											</tr>
+											<tr>
+												<td><img src="images/arrow_branch.png" alt="branch" /></td>
+												<td><a href="#" for="resource_pane">milestone_2011autumn</a></td>
+												<td>2011-09-01 12:31:24</td>
+												<td>Let's go!!</td>
+											</tr>
+											<tr>
+												<td><img src="images/arrow_branch.png" alt="branch" /></td>
+												<td><a href="#" for="resource_pane">task_0001_add_new_feature</a></td>
+												<td>2011-09-31 12:31:24</td>
+												<td>defined.</td>
+											</tr>
+											<tr>
+												<td><img src="images/arrow_branch.png" alt="branch" /></td>
+												<td><a href="#" for="resource_pane">ticket_ac03x2</a></td>
+												<td>2011-10-10 12:31:24</td>
+												<td>assign to taichi</td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
-								<div id="resource_pane">
-									<table class="zebra-striped resource_table" summary="repository viewing">
+								<div id="resource_pane" style="display: none;">
+									<table class="zebra-striped icon_table" summary="repository viewing">
 										<thead>
 											<tr>
 												<th class="icon"></th>
@@ -325,8 +350,8 @@ __    _          _       _   _       _
 										</tbody>
 									</table>
 								</div><!-- <div id="resource_pane"> -->
-								<div id="tags_pane">
-									<table id="tags_table" class="zebra-striped" summary="tags viewing">
+								<div id="tags_pane" style="display: none;">
+									<table id="tags_table" class="zebra-striped icon_table" summary="tags viewing">
 										<thead>
 											<tr>
 												<th class="icon"></th>
@@ -362,7 +387,7 @@ __    _          _       _   _       _
 									</table>
 								</div><!-- <div id="tags_pane"> -->
 								<div id="0.0.3_pane" style="display: none;">
-									<table class="zebra-striped resource_table" summary="repository viewing">
+									<table class="zebra-striped icon_table" summary="repository viewing">
 										<thead>
 											<tr>
 												<th class="icon"></th>
@@ -406,7 +431,7 @@ __    _          _       _   _       _
 									</table>
 								</div><!-- <div id="0.0.3_pane"> -->
 								<div id="0.0.2_pane" style="display: none;">
-									<table class="zebra-striped resource_table" summary="repository viewing">
+									<table class="zebra-striped icon_table" summary="repository viewing">
 										<thead>
 											<tr>
 												<th class="icon"></th>
@@ -444,7 +469,7 @@ __    _          _       _   _       _
 									</table>
 								</div><!-- <div id="0.0.2_pane"> -->
 								<div id="0.0.1_pane" style="display: none;">
-									<table class="zebra-striped resource_table" summary="repository viewing">
+									<table class="zebra-striped icon_table" summary="repository viewing">
 										<thead>
 											<tr>
 												<th class="icon"></th>
