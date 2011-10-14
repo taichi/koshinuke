@@ -15,7 +15,7 @@ goog.require('goog.ui.TableSorter');
 
 goog.require('org.koshinuke.positioning.GravityPosition');
 
-org.koshinuke.main = function() {
+goog.exportSymbol('org.koshinuke.main', function() {
 	var topTab = new goog.ui.TabBar();
 	topTab.decorate(goog.dom.getElement('toptab'));
 	topTab.setSelectedTabIndex(0);
@@ -203,5 +203,4 @@ org.koshinuke.main = function() {
 		component.setDefaultSortFunction(goog.ui.TableSorter.alphaSort);
 		component.setSortFunction(0, goog.ui.TableSorter.noSort);
 	});
-};
-goog.exportSymbol('org.koshinuke.main', org.koshinuke.main);
+});
