@@ -14,6 +14,7 @@ goog.require('goog.ui.PopupMenu');
 goog.require('goog.ui.TableSorter');
 
 goog.require('org.koshinuke.positioning.GravityPosition');
+goog.require('ZeroClipboard');
 
 goog.exportSymbol('org.koshinuke.main', function() {
 	var topTab = new goog.ui.TabBar();
@@ -150,32 +151,34 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	compTip.className = 'twipsy right';
 	compTip.setHtml(clipHtml('copied !!'));
 
-	window['ZeroClipboard']['setMoviePath']('flash/ZeroClipboard.swf');
-	var clip = new window['ZeroClipboard']['Client'];
-	clip['addEventListener']('onMouseOver', function(client) {
+	ZeroClipboard.setMoviePath('flash/ZeroClipboard.swf');
+	
+	var clip = new ZeroClipboard.Client();
+	clip.addEventListener('onMouseOver',function(client) {
 		var el = goog.dom.getElement('clip-btn');
 		el.setAttribute("src", "images/copy_button_over.png");
 		copyTip.showForElement(el, new org.koshinuke.positioning.GravityPosition(el, 'w', 3));
 	});
-	clip['addEventListener']('onMouseOut', function(client) {
+	clip.addEventListener('onMouseOut', function(client) {
 		goog.dom.getElement('clip-btn').setAttribute("src", "images/copy_button_up.png");
 		copyTip.setVisible(false);
 		compTip.setVisible(false);
 	});
-	clip['addEventListener']('onMouseUp', function(client) {
+	clip.addEventListener('onMouseUp', function(client) {
 		goog.dom.getElement('clip-btn').setAttribute("src", "images/copy_button_up.png");
 	});
-	clip['addEventListener']('onMouseDown', function(client) {
+	clip.addEventListener('onMouseDown', function(client) {
 		var el = goog.dom.getElement('clip-btn');
 		el.setAttribute("src", "images/copy_button_down.png");
 		var txt = goog.dom.getElement('url-box').value;
-		clip["setText"](txt);
+		clip.setText(txt);
 	});
-	clip['addEventListener']('onComplete', function(client, text) {
+	clip.addEventListener('onComplete', function(client, text) {
 		var el = goog.dom.getElement('clip-btn');
 		compTip.showForElement(el, new org.koshinuke.positioning.GravityPosition(el, 'w', 3));
 	});
-	clip['glue']("clip-btn", "clip-container");
+	clip.glue("clip-btn", "clip-container");
+	
 	goog.events.listen(goog.dom.getElement("url-box"), goog.events.EventType.CLICK, function(e) {
 		goog.dom.getElement("url-box").select();
 	});
@@ -184,7 +187,6 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	repoTab.setSelectedTabIndex(0);
 	// Object #<NodeList> has no method 'forEach' と怒られる。
 	// goog.dom.queryはarrayを返す時と、NodeList返す時がある。
-	//goog.dom.query('#protocols a').forEach(function(el){
 	goog.array.forEach(goog.dom.query('#protocols a'), function(el) {
 		goog.events.listen(el, goog.events.EventType.CLICK, function(e) {
 			e.preventDefault();
