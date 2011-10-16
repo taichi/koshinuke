@@ -136,6 +136,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 				org.koshinuke.PubSub.publish(REPO_LOCATION_STATE, {
 					root : obj.root,
 					name : maybeA.firstChild.textContent
+					// path : TODO how to send path ?
 				});
 			}
 		});
