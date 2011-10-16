@@ -1,4 +1,4 @@
-goog.provide('org.koshinuke.main');
+goog.provide('org.koshinuke');
 
 goog.require('goog.array');
 goog.require('goog.dom');
@@ -6,17 +6,24 @@ goog.require('goog.dom.classes');
 goog.require('goog.dom.query');
 goog.require('goog.events');
 goog.require('goog.object');
+goog.require('goog.pubsub.PubSub');
+goog.require('goog.positioning.Corner');
+goog.require('goog.soy');
 goog.require('goog.ui.Component.EventType');
 goog.require('goog.ui.TabBar');
-goog.require('goog.positioning.Corner');
 goog.require('goog.ui.Tooltip');
 goog.require('goog.ui.PopupMenu');
 goog.require('goog.ui.TableSorter');
-
-goog.require('org.koshinuke.positioning.GravityPosition');
 goog.require('ZeroClipboard');
 
+goog.require('org.koshinuke.positioning.GravityPosition');
+goog.require('org.koshinuke.template');
+goog.require('org.koshinuke.ui.Breadcrumb');
+
 goog.exportSymbol('org.koshinuke.main', function() {
+	org.koshinuke.PubSub = new goog.pubsub.PubSub();
+	REPO_LOCATION_STATE = "repo.loc.state";
+
 	var topTab = new goog.ui.TabBar();
 	topTab.decorate(goog.dom.getElement('toptab'));
 	topTab.setSelectedTabIndex(0);
@@ -81,6 +88,12 @@ goog.exportSymbol('org.koshinuke.main', function() {
 			console.log(el);
 		});
 	});
+
+	var breadcrumb = new org.koshinuke.ui.Breadcrumb(goog.dom.getElement('locationpath'));
+	org.koshinuke.PubSub.subscribe(REPO_LOCATION_STATE, breadcrumb.receive, breadcrumb);
+
+	//
+	//
 	var projMainTab = new goog.ui.TabBar();
 	// hack
 	projMainTab.currentPane = 'branch_pane';
@@ -106,14 +119,24 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		switchTab(projMainTab, next);
 	});
 
-	goog.array.forEach(["branch_table", "tags_table"], function(id) {
-		var tagsEl = goog.dom.getElement(id);
+	goog.array.forEach([{
+		id : "branch_table",
+		root : "Branches"
+	}, {
+		id : "tags_table",
+		root : "Tags"
+	}], function(obj) {
+		var tagsEl = goog.dom.getElement(obj.id);
 		goog.events.listen(tagsEl, goog.events.EventType.CLICK, function(e) {
 			var maybeA = e.target;
 			var next = maybeA.getAttribute('for');
 			if(next) {
 				e.preventDefault();
 				switchTab(projMainTab, next);
+				org.koshinuke.PubSub.publish(REPO_LOCATION_STATE, {
+					root : obj.root,
+					name : maybeA.firstChild.textContent
+				});
 			}
 		});
 	});
@@ -152,9 +175,9 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	compTip.setHtml(clipHtml('copied !!'));
 
 	ZeroClipboard.setMoviePath('flash/ZeroClipboard.swf');
-	
+
 	var clip = new ZeroClipboard.Client();
-	clip.addEventListener('onMouseOver',function(client) {
+	clip.addEventListener('onMouseOver', function(client) {
 		var el = goog.dom.getElement('clip-btn');
 		el.setAttribute("src", "images/copy_button_over.png");
 		copyTip.showForElement(el, new org.koshinuke.positioning.GravityPosition(el, 'w', 3));
@@ -178,7 +201,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		compTip.showForElement(el, new org.koshinuke.positioning.GravityPosition(el, 'w', 3));
 	});
 	clip.glue("clip-btn", "clip-container");
-	
+
 	goog.events.listen(goog.dom.getElement("url-box"), goog.events.EventType.CLICK, function(e) {
 		goog.dom.getElement("url-box").select();
 	});
