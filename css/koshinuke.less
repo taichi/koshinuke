@@ -9,7 +9,6 @@
 // Styled patterns and elements
 @import "forms.less";
 @import "type.less";
-@import "tables.less";
 @import "patterns.less";
 
 .topbar {
@@ -436,13 +435,33 @@
 	}
 }
 
-.zebra-striped {
+table {
+  width: 100%;
+  margin-bottom: @baseline;
+  padding: 0;
+  border-collapse: separate;
+  font-size: 13px;
+  th, td {
+    padding: 10px 10px 9px;
+    line-height: @baseline * .75;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    padding-top: 9px;
+    font-weight: bold;
+    border-bottom-width: 2px;
+  }
+}
+
+.gradient {
   tbody {
-    tr:nth-child(odd) td {
-      background-color: #f9f9f9;
+    tr td {
+      #gradient > .vertical(@white, #f9f9f9);
     }
     tr:hover td {
-      background-color: #f5f5f5;
+      #gradient > .vertical(#f5f5f5, @white);
     }
   }
 
