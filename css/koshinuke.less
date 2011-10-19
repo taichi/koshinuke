@@ -7,9 +7,54 @@
 @import "radius.less";
 
 // Styled patterns and elements
-@import "forms.less";
 @import "type.less";
 @import "patterns.less";
+
+.user-select(@select : none) {
+	user-select: @select;
+		-webkit-user-select: @select;
+		-khtml-user-select: @select;
+		-moz-user-select: @select;
+}
+
+.label_filter {
+	.user-select;
+	float: left;
+	background-color: @white;
+	margin: 7px 0px 0px 2px;
+	position: absolute;
+}
+.branch_filters {
+	.user-select;
+	display: inline;
+	#radius > .around(3px);
+	border: 1px solid #CCC;
+	padding: 3px 0px 3px 15px;
+	margin-left: 20px;
+	min-width: 467px;
+	.filter {
+		float: left;
+		margin: 2px 2px 0 2px;
+		label {
+			#radius > .around(3px);
+			border: 1px solid #CCC;
+			background: whitesmoke;
+			padding: 5px 5px 1px 0px;
+			input[type=checkbox] {
+				margin: 5px 0px 5px 5px;
+			}
+			.desc {
+				vertical-align: 3px;				
+			}
+			&.active {
+				color: black;
+				background: lighten(@green, 30);
+				border-color: @green;
+			}
+		}
+	}
+}
+
 
 .topbar {
 	.project-name {

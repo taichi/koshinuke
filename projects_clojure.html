@@ -14,9 +14,10 @@ __    _          _       _   _       _
 		<script type="application/javascript" src="closure-library/closure/goog/base.js"></script>
 		<script type="application/javascript" src="closure-library/third_party/closure/goog/deps.js"></script>
 		<script>
-// name resolving hack
-goog.require('goog.string.StringBuffer');
-goog.require('goog.soy');
+			// name resolving hack
+			goog.require('goog.string.StringBuffer');
+			goog.require('goog.soy');
+
 		</script>
 		<script type="application/javascript" src="js/soyutils_usegoog.js"></script>
 		<script type="application/javascript" src="js/closure.ZeroClipboard.js"></script>
@@ -135,7 +136,7 @@ goog.require('goog.soy');
 						<div class="row">
 							<ul id="locationpath" class="breadcrumbs">
 								<li>
-									<a href="#">Branches<!-- or Tags --></a>
+									<a href="#">Branches</a>
 								</li>
 								<li>
 									<a href="#">master</a>
@@ -185,6 +186,41 @@ goog.require('goog.soy');
 							</div><!-- <div class="tab-container"> -->
 							<div class="panes">
 								<div id="branch_pane">
+									<div class="label_filter">
+										Filter
+									</div>
+									<fieldset class="branch_filters">
+										<div class="filter">
+											<label class="active">
+												<input type="checkbox" />
+												<span class="desc">shared</span></label>
+										</div>
+										<div class="filter">
+											<label>
+												<input type="checkbox" />
+												<span class="desc">assign to you</span></label>
+										</div>
+										<div class="filter">
+											<label>
+												<input type="checkbox" />
+												<span class="desc">milestone</span></label>
+										</div>
+										<div class="filter">
+											<label>
+												<input type="checkbox" />
+												<span class="desc">task</span></label>
+										</div>
+										<div class="filter">
+											<label>
+												<input type="checkbox" />
+												<span class="desc">ticket</span></label>
+										</div>
+										<div class="filter">
+											<label>
+												<input type="checkbox" />
+												<span class="desc">closed</span></label>
+										</div>
+									</fieldset>
 									<table id="branch_table" class="gradient icon_table" summary="branch viewing">
 										<thead>
 											<tr>
