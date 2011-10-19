@@ -10,6 +10,8 @@
 @import "type.less";
 @import "patterns.less";
 
+@filter:	#38a1db; // type毎に色変える？
+
 .user-select(@select : none) {
 	user-select: @select;
 		-webkit-user-select: @select;
@@ -48,8 +50,8 @@
 			}
 			&.active {
 				color: black;
-				background: lighten(@green, 30);
-				border-color: @green;
+				background: lighten(@filter, 30);
+				border-color: @filter;
 			}
 		}
 	}
