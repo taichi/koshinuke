@@ -189,35 +189,35 @@ __    _          _       _   _       _
 									<div class="label_filter">
 										Filter
 									</div>
-									<fieldset class="branch_filters">
+									<fieldset id="branch_filters">
 										<div class="filter">
 											<label class="active">
-												<input type="checkbox" />
+												<input type="checkbox" value="shared" checked="true"/>
 												<span class="desc">shared</span></label>
 										</div>
 										<div class="filter">
-											<label>
-												<input type="checkbox" />
+											<label class="active">
+												<input type="checkbox" value="taichi" checked="true"/>
 												<span class="desc">assign to you</span></label>
 										</div>
 										<div class="filter">
-											<label>
-												<input type="checkbox" />
+											<label class="active">
+												<input type="checkbox" value="milestone" checked="true"/>
 												<span class="desc">milestone</span></label>
 										</div>
 										<div class="filter">
-											<label>
-												<input type="checkbox" />
+											<label class="active">
+												<input type="checkbox" value="task" checked="true"/>
 												<span class="desc">task</span></label>
 										</div>
 										<div class="filter">
-											<label>
-												<input type="checkbox" />
+											<label class="active">
+												<input type="checkbox" value="ticket" checked="true"/>
 												<span class="desc">ticket</span></label>
 										</div>
 										<div class="filter">
 											<label>
-												<input type="checkbox" />
+												<input type="checkbox" value="closed"/>
 												<span class="desc">closed</span></label>
 										</div>
 									</fieldset>
@@ -231,35 +231,41 @@ __    _          _       _   _       _
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
+											<tr class="shared">
 												<td><img src="images/arrow_branch.png" alt="branch" /></td>
 												<td><a href="#" for="resource_pane">master</a></td>
 												<td>2011-08-31 12:31:24</td>
 												<td>first commit.</td>
 											</tr>
-											<tr>
+											<tr class="shared">
 												<td><img src="images/arrow_branch.png" alt="branch" /></td>
 												<td><a href="#" for="resource_pane">develop</a></td>
 												<td>2011-09-12 12:31:24</td>
 												<td>at the begining of test</td>
 											</tr>
-											<tr>
+											<tr class="milestone">
 												<td><img src="images/arrow_branch.png" alt="branch" /></td>
-												<td><a href="#" for="resource_pane">milestone_2011autumn</a></td>
+												<td><a href="#" for="resource_pane">milestone#2011autumn</a></td>
 												<td>2011-09-01 12:31:24</td>
 												<td>Let's go!!</td>
 											</tr>
-											<tr>
+											<tr class="task">
 												<td><img src="images/arrow_branch.png" alt="branch" /></td>
-												<td><a href="#" for="resource_pane">task_0001_add_new_feature</a></td>
+												<td><a href="#" for="resource_pane">task#0001_add_new_feature</a></td>
 												<td>2011-09-31 12:31:24</td>
 												<td>defined.</td>
 											</tr>
-											<tr>
+											<tr class="ticket taichi">
 												<td><img src="images/arrow_branch.png" alt="branch" /></td>
-												<td><a href="#" for="resource_pane">ticket_ac03x2</a></td>
+												<td><a href="#" for="resource_pane">ticket#ac03x2</a></td>
 												<td>2011-10-10 12:31:24</td>
 												<td>assign to taichi</td>
+											</tr>
+											<tr class="closed">
+												<td><img src="images/arrow_branch.png" alt="branch" /></td>
+												<td><a href="#" for="resource_pane">ticket#0c03x2</a></td>
+												<td>2011-9-10 12:31:24</td>
+												<td>finished work.</td>
 											</tr>
 										</tbody>
 									</table>

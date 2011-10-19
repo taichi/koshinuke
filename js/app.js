@@ -88,7 +88,6 @@ goog.exportSymbol('org.koshinuke.main', function() {
 			console.log(el);
 		});
 	});
-
 	var breadcrumb = new org.koshinuke.ui.Breadcrumb(goog.dom.getElement('locationpath'));
 	org.koshinuke.PubSub.subscribe(REPO_LOCATION_STATE, breadcrumb.receive, breadcrumb);
 
@@ -220,6 +219,37 @@ goog.exportSymbol('org.koshinuke.main', function() {
 			var oldone = parent.firstChild;
 			parent.replaceChild(newone, oldone);
 		});
+	});
+	//
+	//
+	function updateFilter() {
+		var cond = goog.array.map(goog.array.filter(goog.dom.query("#branch_filters input"), function(v) {
+			return v.checked;
+		}), function(v) {
+			return v.value;
+		});
+
+		goog.array.forEach(goog.dom.query("#branch_table tbody tr"), function(row) {
+			var shown = false;
+			goog.array.forEach(goog.dom.classes.get(row), function(v) {
+				shown |= goog.array.contains(cond, v);
+			});
+			goog.style.showElement(row, shown);
+		});
+	}
+	updateFilter();
+
+	goog.events.listen(goog.dom.getElement('branch_filters'), goog.events.EventType.CLICK, function(e) {
+		var t = e.target;
+		if(t && t.value) {
+			var label = t.parentNode;
+			if(t.checked) {
+				goog.dom.classes.add(label, "active");
+			} else {
+				goog.dom.classes.remove(label, "active");
+			}
+			updateFilter();
+		}
 	});
 	//
 	//
