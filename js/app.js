@@ -5,10 +5,13 @@ goog.require('goog.dom');
 goog.require('goog.dom.classes');
 goog.require('goog.dom.query');
 goog.require('goog.events');
+goog.require('goog.graphics');
+goog.require('goog.graphics.Font');
 goog.require('goog.object');
 goog.require('goog.pubsub.PubSub');
 goog.require('goog.positioning.Corner');
 goog.require('goog.soy');
+goog.require('goog.style');
 goog.require('goog.ui.Component.EventType');
 goog.require('goog.ui.TabBar');
 goog.require('goog.ui.Tooltip');
@@ -20,7 +23,72 @@ goog.require('org.koshinuke.positioning.GravityPosition');
 goog.require('org.koshinuke.template');
 goog.require('org.koshinuke.ui.Breadcrumb');
 
+function renderCommitGraph() {
+	var canvas = goog.dom.getElement('commitGraph');
+	var size = goog.style.getSize(canvas);
+	console.log(size);
+	var g = goog.graphics.createGraphics(1022, 1022);
+	var baseRect = makeGrid(g, 10);
+	var info = goog.dom.getElement('graph_info');
+	goog.events.listen(baseRect, [goog.events.EventType.MOUSEOVER, goog.events.EventType.MOUSEMOVE, goog.events.EventType.CLICK], function(e) {
+		var x = e.offsetX;
+		var y = e.offsetY;
+		info.firstChild.textContent = 'X:' + x + ' ' + 'Y:' + y;
+	});
+	var stroke = new goog.graphics.Stroke(1, '#2a83a2');
+	var fill = new goog.graphics.SolidFill('#83ccd2');
+
+	var txtStroke = new goog.graphics.Stroke(1, '#000000');
+	var txtFill = new goog.graphics.SolidFill('#000000');
+	var baseEl = canvas;
+	var ff = goog.style.getFontFamily(baseEl);
+	var fs = goog.style.getFontSize(baseEl);
+	console.log(ff);	
+	console.log(fs);
+	var font = new goog.graphics.Font(fs, ff);
+	
+	//var time = g.drawRect(1, 1, 80, 30, stroke, fill);
+	var time = g.drawEllipse(70, 40, 60, 30, stroke, fill);
+	var timeLabel = g.drawText("timeline", 10, 10, 120, 60, "center", "center", font, null, txtFill);
+
+	g.render(canvas);
+}
+
+function makeGrid(g, size) {
+	var picSize = g.getPixelSize();
+	var w = picSize.width;
+	var h = picSize.height;
+	var path = new goog.graphics.Path();
+	function divide(left, right) {
+		return (left - (left % right)) / right;
+	}
+
+	function makePath(times, f) {
+		//f(1);
+		for(var i = 1; i < times; i++) {
+			var now = i * size + 1;
+			f(now);
+		}
+	}
+
+	makePath(divide(w, size) + 1, function(now) {
+		path.moveTo(now, 0);
+		path.lineTo(now, h);
+	});
+	makePath(divide(h, size) + 1, function(now) {
+		path.moveTo(0, now);
+		path.lineTo(w, now);
+	});
+	var stroke = new goog.graphics.Stroke(1, '#ebf6f7');
+	var fill = new goog.graphics.SolidFill('#ffffff');
+	var rect = g.drawRect(1, 1, w - 1, h - 1, stroke, fill);
+	g.drawPath(path, stroke, fill);
+
+	return rect;
+}
+
 goog.exportSymbol('org.koshinuke.main', function() {
+	renderCommitGraph();
 	org.koshinuke.PubSub = new goog.pubsub.PubSub();
 	REPO_LOCATION_STATE = "repo.loc.state";
 
@@ -238,6 +306,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 			goog.style.showElement(row, shown);
 		});
 	}
+
 	updateFilter();
 
 	goog.events.listen(goog.dom.getElement('branch_filters'), goog.events.EventType.CLICK, function(e) {
