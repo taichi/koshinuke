@@ -112,7 +112,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	}
 
 
-	goog.events.listen(projMainTab, goog.ui.Component.EventType.ACTION, function(e) {
+	goog.events.listen(projMainTab, goog.ui.Component.EventType.SELECT, function(e) {
 		var el = e.target.getElement();
 		var next = el.getAttribute('for');
 		switchTab(projMainTab, next);
@@ -140,6 +140,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 			}
 		});
 	});
+	projMainTab.setSelectedTabIndex(3);
 
 	goog.dom.query('.tooltipable').forEach(function(el) {
 		var tooltip = new goog.ui.Tooltip(el);
