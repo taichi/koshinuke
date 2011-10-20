@@ -7,6 +7,7 @@ goog.require('goog.dom.query');
 goog.require('goog.events');
 goog.require('goog.graphics');
 goog.require('goog.graphics.Font');
+goog.require('goog.graphics.SvgGraphics');
 goog.require('goog.object');
 goog.require('goog.pubsub.PubSub');
 goog.require('goog.positioning.Corner');
@@ -27,7 +28,9 @@ function renderCommitGraph() {
 	var canvas = goog.dom.getElement('commitGraph');
 	var size = goog.style.getSize(canvas);
 	console.log(size);
-	var g = goog.graphics.createGraphics(1022, 1022);
+	var g = new goog.graphics.SvgGraphics(1022, 1022);
+	g.createDom();
+
 	var baseRect = makeGrid(g, 10);
 	var info = goog.dom.getElement('graph_info');
 	goog.events.listen(baseRect, [goog.events.EventType.MOUSEOVER, goog.events.EventType.MOUSEMOVE, goog.events.EventType.CLICK], function(e) {
@@ -35,23 +38,40 @@ function renderCommitGraph() {
 		var y = e.offsetY;
 		info.firstChild.textContent = 'X:' + x + ' ' + 'Y:' + y;
 	});
+
+
+	var master = branch(g, "master", 10, 120);
+	
+	
+	var develop = branch(g, "develop", 100, 10);
+	var milestone = branch(g, "milestone", 190, 160);
+	var task1 = branch(g, "task1", 280, 50);
+	var task2 = branch(g, "task2", 370, 90);
+	g.render(canvas);
+}
+
+function branch(g, name, x, y) {
 	var stroke = new goog.graphics.Stroke(1, '#2a83a2');
 	var fill = new goog.graphics.SolidFill('#83ccd2');
-
-	var txtStroke = new goog.graphics.Stroke(1, '#000000');
-	var txtFill = new goog.graphics.SolidFill('#000000');
-	var baseEl = canvas;
+	var baseEl = goog.dom.getElement('commitGraph');
 	var ff = goog.style.getFontFamily(baseEl);
 	var fs = goog.style.getFontSize(baseEl);
-	console.log(ff);	
-	console.log(fs);
+	console.log(fs + "/" + ff);
 	var font = new goog.graphics.Font(fs, ff);
-	
-	//var time = g.drawRect(1, 1, 80, 30, stroke, fill);
-	var time = g.drawEllipse(70, 40, 60, 30, stroke, fill);
-	var timeLabel = g.drawText("timeline", 10, 10, 120, 60, "center", "center", font, null, txtFill);
 
-	g.render(canvas);
+	var rect = radius(g, g.drawRect(x, y, 80, 30, stroke, fill));
+	g.drawText(name, x, y, 80, 30, "center", "center", font, null, new goog.graphics.SolidFill('#000000'));
+	
+	return rect;
+}
+
+function radius(g, rect, opt_r) {
+	var r = opt_r ? opt_r : 10;
+	g.setElementAttributes(rect.getElement(), {
+		"rx" : r,
+		"ry" : r
+	});
+	return rect;
 }
 
 function makeGrid(g, size) {
@@ -82,8 +102,8 @@ function makeGrid(g, size) {
 	var stroke = new goog.graphics.Stroke(1, '#ebf6f7');
 	var fill = new goog.graphics.SolidFill('#ffffff');
 	var rect = g.drawRect(1, 1, w - 1, h - 1, stroke, fill);
+	radius(g, rect);
 	g.drawPath(path, stroke, fill);
-
 	return rect;
 }
 
