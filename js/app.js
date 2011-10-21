@@ -8,11 +8,13 @@ goog.require('goog.events');
 goog.require('goog.graphics');
 goog.require('goog.graphics.Font');
 goog.require('goog.graphics.SvgGraphics');
+goog.require('goog.net.XhrIo');
 goog.require('goog.object');
 goog.require('goog.pubsub.PubSub');
 goog.require('goog.positioning.Corner');
 goog.require('goog.soy');
 goog.require('goog.style');
+goog.require('goog.Uri');
 goog.require('goog.ui.Component.EventType');
 goog.require('goog.ui.TabBar');
 goog.require('goog.ui.Tooltip');
@@ -25,86 +27,13 @@ goog.require('org.koshinuke.template');
 goog.require('org.koshinuke.ui.Breadcrumb');
 
 function renderCommitGraph() {
-	var canvas = goog.dom.getElement('commitGraph');
-	var size = goog.style.getSize(canvas);
-	console.log(size);
-	var g = new goog.graphics.SvgGraphics(1022, 1022);
-	g.createDom();
-
-	var baseRect = makeGrid(g, 10);
-	var info = goog.dom.getElement('graph_info');
-	goog.events.listen(baseRect, [goog.events.EventType.MOUSEOVER, goog.events.EventType.MOUSEMOVE, goog.events.EventType.CLICK], function(e) {
-		var x = e.offsetX;
-		var y = e.offsetY;
-		info.firstChild.textContent = 'X:' + x + ' ' + 'Y:' + y;
+	var ownUri = new goog.Uri(window.location.href);
+	var dataUri = ownUri.resolve(new goog.Uri('BranchGraph.xml'));
+	goog.net.XhrIo.send(dataUri.toString(), function(e){
+		var svg = e.target.getResponseText();
+		var el = goog.dom.getElement("commitGraph");
+		el.innerHTML = svg;
 	});
-
-
-	var master = branch(g, "master", 10, 120);
-	
-	
-	var develop = branch(g, "develop", 100, 10);
-	var milestone = branch(g, "milestone", 190, 160);
-	var task1 = branch(g, "task1", 280, 50);
-	var task2 = branch(g, "task2", 370, 90);
-	g.render(canvas);
-}
-
-function branch(g, name, x, y) {
-	var stroke = new goog.graphics.Stroke(1, '#2a83a2');
-	var fill = new goog.graphics.SolidFill('#83ccd2');
-	var baseEl = goog.dom.getElement('commitGraph');
-	var ff = goog.style.getFontFamily(baseEl);
-	var fs = goog.style.getFontSize(baseEl);
-	console.log(fs + "/" + ff);
-	var font = new goog.graphics.Font(fs, ff);
-
-	var rect = radius(g, g.drawRect(x, y, 80, 30, stroke, fill));
-	g.drawText(name, x, y, 80, 30, "center", "center", font, null, new goog.graphics.SolidFill('#000000'));
-	
-	return rect;
-}
-
-function radius(g, rect, opt_r) {
-	var r = opt_r ? opt_r : 10;
-	g.setElementAttributes(rect.getElement(), {
-		"rx" : r,
-		"ry" : r
-	});
-	return rect;
-}
-
-function makeGrid(g, size) {
-	var picSize = g.getPixelSize();
-	var w = picSize.width;
-	var h = picSize.height;
-	var path = new goog.graphics.Path();
-	function divide(left, right) {
-		return (left - (left % right)) / right;
-	}
-
-	function makePath(times, f) {
-		//f(1);
-		for(var i = 1; i < times; i++) {
-			var now = i * size + 1;
-			f(now);
-		}
-	}
-
-	makePath(divide(w, size) + 1, function(now) {
-		path.moveTo(now, 0);
-		path.lineTo(now, h);
-	});
-	makePath(divide(h, size) + 1, function(now) {
-		path.moveTo(0, now);
-		path.lineTo(w, now);
-	});
-	var stroke = new goog.graphics.Stroke(1, '#ebf6f7');
-	var fill = new goog.graphics.SolidFill('#ffffff');
-	var rect = g.drawRect(1, 1, w - 1, h - 1, stroke, fill);
-	radius(g, rect);
-	g.drawPath(path, stroke, fill);
-	return rect;
 }
 
 goog.exportSymbol('org.koshinuke.main', function() {
@@ -228,7 +157,6 @@ goog.exportSymbol('org.koshinuke.main', function() {
 			}
 		});
 	});
-	projMainTab.setSelectedTabIndex(3);
 
 	goog.dom.query('.tooltipable').forEach(function(el) {
 		var tooltip = new goog.ui.Tooltip(el);
