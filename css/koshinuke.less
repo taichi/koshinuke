@@ -1,7 +1,8 @@
 @import "reset.less";
 
 // Core
-@import "preboot.less";
+@import "variables.less";
+@import "mixins.less";
 @import "scaffolding.less";
 
 @import "radius.less";
@@ -72,7 +73,7 @@
 			line-height: 1;
 		    &:hover {
 		      //color: #fff;
-		      //text-decoration: none;
+		      text-decoration: none;
 		    }
 		}
 	}
@@ -121,27 +122,11 @@
 }
 // Topbar Nav
 .nav {
-  display: block;
-  float: left;
-  margin: 0 10px 0 0;
-  position: relative;
-  left: 0;
   outline: none;
   
   .goog-tab {
     display: block;
     float: left;
-  }
-  a {
-    display: block;
-    float: none;
-    padding: 10px 10px 11px;
-    line-height: 19px;
-    text-decoration: none;
-    &:hover {
-      color: #fff;
-      text-decoration: none;
-    }
   }
  
   .goog-tab-selected a {
