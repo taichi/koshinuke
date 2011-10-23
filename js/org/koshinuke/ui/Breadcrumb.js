@@ -23,27 +23,24 @@ org.koshinuke.ui.Breadcrumb.prototype.li_ = function(args) {
 	});
 }
 org.koshinuke.ui.Breadcrumb.prototype.receive = function(locationdata) {
-	if(locationdata.root) {
-		this.root = locationdata.root;
-	}
-	if(locationdata.name) {
-		this.name = locationdata.name;
-	}
-	if(locationdata.path) {
-		this.path = locationdata.path;
+	for(var key in locationdata) {
+		var v = locationdata[key];
+		if(v) {
+			this[key] = v;
+		}
 	}
 	this.remake();
 }
 org.koshinuke.ui.Breadcrumb.prototype.remake = function() {
 	goog.dom.removeChildren(this.el);
-	this.el.appendChild(this.li_(this.root));
-	this.el.appendChild(this.li_(this.name));
 
+	var ary = [this.root, this.name];
 	if(this.path) {
-		goog.array.forEach(path.split('/'), function(p) {
-			if(p) {
-				this.el.appendChild(this.li_(p));
-			}
-		});
+		ary = goog.array.flatten(ary, path.split('/'));
 	}
+	goog.array.forEach(ary, function(p) {
+		if(p) {
+			this.el.appendChild(this.li_(p));
+		}
+	}, this);
 };
