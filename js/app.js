@@ -127,13 +127,16 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		toggleTab(next, true);
 		tabbar.currentPane = next;
 	}
-
-
-	goog.events.listen(projMainTab, goog.ui.Component.EventType.SELECT, function(e) {
-		var el = e.target.getElement();
-		var next = el.getAttribute('for');
-		switchTab(projMainTab, next);
-	});
+	
+	function listenSwitch(tab) {
+		goog.events.listen(tab, goog.ui.Component.EventType.SELECT, function(e) {
+			var el = e.target.getElement();
+			var next = el.getAttribute('for');
+			switchTab(tab, next);
+		});
+	}
+	
+	listenSwitch(projMainTab);
 
 	goog.array.forEach([{
 		id : "branch_table",
@@ -277,4 +280,11 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		component.setDefaultSortFunction(goog.ui.TableSorter.alphaSort);
 		component.setSortFunction(0, goog.ui.TableSorter.noSort);
 	});
+	//
+	//
+	var docMainTab = new goog.ui.TabBar();
+	// hack
+	docMainTab.currentPane = 'doc_main_pane';
+	docMainTab.decorate(goog.dom.getElement('document_tab'));
+	listenSwitch(docMainTab);
 });

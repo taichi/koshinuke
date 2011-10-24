@@ -29,8 +29,9 @@
 	.clearfix;
 	#radius > .around();
 	margin-left: -20px;
-	background-color: @doc_top_bg;
+	//background-color: @doc_top_bg;
 	margin-bottom: 5px;
+	min-width: 400px;
 }
 .doc_sidebar {
 	.clearfix;
@@ -45,16 +46,18 @@
 .doc_main_area {
 	.clearfix;
 	margin-left: 110px;
+	min-width: 400px;
 	.content_menu {
 		height: 35px;
 		.pagename {
-			float: left;
+			display: inline;
 			font-weight: bold;
 			color: @grayDark;
 			font-size: large;
 			line-height: @baseline * 2;
 		}
 		ul {
+			display: inline;
 			list-style: none;
 			margin: 0 0 0 0;
 			li {
@@ -66,11 +69,15 @@
 					#gradient > .vertical-three-colors(@doc_button, @doc_button, 25%, darken(@doc_button, 10%));
 					#radius > .around(4px);
 					border: 1px solid #ccc;
+					color: #333;
+					text-shadow: 0 1px 1px rgba(255,255,255,.75);
 				}
 			}
 		}
 	}
 	.doc_content {
+		.clearfix;
+		padding: 0 2px 0 0;
 		#radius > .around();
 		background-color: @doc_main_bg;
 	}

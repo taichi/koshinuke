@@ -635,22 +635,51 @@ __    _          _       _   _       _
 					</div>
 					<div id="document_contents" style="display: none;">
 						<div class="doc_topmenu">
-							とっぷめぬ
-						</div>
-						<div class="doc_sidebar">
-							さいどば
-						</div>
-						<div class="doc_main_area">
-							<div class="content_menu">
-								<div class="pagename">Page Name</div>
-								<ul>
-									<li><button>Page History</button></li>
-									<li><button>Edit Page</button></li>
-									<li><button>New Page</button></li>
-								</ul>
+							<div id="document_tab" class="goog-tab-bar goog-tabs">
+								<div class="goog-tab goog-tab-selected" for="doc_main_pane">
+									<a href="#">Main</a>
+								</div>
+								<div class="goog-tab dropdown" for="doc_list_pane">
+									<a href="#">Lists</a>
+								</div>
+								<div class="goog-tab" for="doc_history_pane">
+									<a href="#">History</a>
+								</div>
+								<div class="goog-tab" for="doc_raw_pane">
+									<a href="#">Raw Access</a>
+								</div>
 							</div>
-							<div class="doc_content">
-								<h2>こんてんと</h2>
+						</div>
+						<div id="doc_main_pane">
+							<div class="doc_sidebar">
+								さいどば
+							</div>
+							<div class="doc_main_area">
+								<div class="content_menu">
+									<div class="pagename">
+										Page Name
+									</div>
+									<ul>
+										<li>
+											<button>
+												Page History
+											</button>
+										</li>
+										<li>
+											<button>
+												Edit Page
+											</button>
+										</li>
+										<li>
+											<button>
+												New Page
+											</button>
+										</li>
+									</ul>
+								</div>
+								<div class="doc_content">
+									こんてんと
+								</div>
 							</div>
 						</div>
 					</div>
