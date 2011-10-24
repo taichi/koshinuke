@@ -88,7 +88,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	goog.events.listen(projSideTab, goog.ui.Component.EventType.UNSELECT, function(e) {
 		switchProjectSideTab(e, "inactive");
 	});
-	projSideTab.setSelectedTabIndex(0);
+	projSideTab.setSelectedTabIndex(2);
 	goog.array.forEach(goog.dom.query('#sidemenu_projects a'), function(el) {
 		goog.events.listen(el, goog.events.EventType.CLICK, function(e) {
 			//e.preventDefault();

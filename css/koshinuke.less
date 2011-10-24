@@ -20,6 +20,62 @@
 		-moz-user-select: @select;
 }
 
+@doc_top_bg : #f7fcfe;
+@doc_button : #ffffff;
+@doc_side_bg: #eaf4fc;
+@doc_main_bg: #e8ecef;
+
+.doc_topmenu {
+	.clearfix;
+	#radius > .around();
+	margin-left: -20px;
+	background-color: @doc_top_bg;
+	margin-bottom: 5px;
+}
+.doc_sidebar {
+	.clearfix;
+	#radius > .around();
+	background-color: @doc_side_bg;
+	margin-left: -20px;
+	float: left;
+	width: 120px;
+	height: 100%;
+}
+
+.doc_main_area {
+	.clearfix;
+	margin-left: 110px;
+	.content_menu {
+		height: 35px;
+		.pagename {
+			float: left;
+			font-weight: bold;
+			color: @grayDark;
+			font-size: large;
+			line-height: @baseline * 2;
+		}
+		ul {
+			list-style: none;
+			margin: 0 0 0 0;
+			li {
+				float: right;
+				margin: 2px;
+				button {
+					cursor: pointer;
+					padding: 5px 7px 6px 7px;
+					#gradient > .vertical-three-colors(@doc_button, @doc_button, 25%, darken(@doc_button, 10%));
+					#radius > .around(4px);
+					border: 1px solid #ccc;
+				}
+			}
+		}
+	}
+	.doc_content {
+		#radius > .around();
+		background-color: @doc_main_bg;
+	}
+}
+
 .label_filter {
 	.user-select;
 	float: left;
