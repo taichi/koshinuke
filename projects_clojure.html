@@ -159,7 +159,7 @@ __    _          _       _   _       _
 									<div class="goog-tab goog-tab-selected" for="branch_pane">
 										<a href="#Branches">Branches</a>
 									</div>
-									<div class="goog-tab dropdown" for="tags_pane">
+									<div class="goog-tab" for="tags_pane">
 										<a href="#tags">Tags</a>
 									</div>
 									<div class="goog-tab" for="commitlog_pane">
@@ -634,12 +634,13 @@ __    _          _       _   _       _
 						タスク管理的なアレ
 					</div>
 					<div id="document_contents" style="display: none;">
+						<!-- http://www.quietwrite.com/ とか、http://substance.io/ みたいな感じにしたい。-->
 						<div class="doc_topmenu">
 							<div id="document_tab" class="goog-tab-bar goog-tabs">
 								<div class="goog-tab goog-tab-selected" for="doc_main_pane">
 									<a href="#">Main</a>
 								</div>
-								<div class="goog-tab dropdown" for="doc_list_pane">
+								<div class="goog-tab" for="doc_list_pane">
 									<a href="#">Lists</a>
 								</div>
 								<div class="goog-tab" for="doc_history_pane">
@@ -652,7 +653,124 @@ __    _          _       _   _       _
 						</div>
 						<div id="doc_main_pane">
 							<div class="doc_sidebar">
-								さいどば
+								<div class="goog-tab-bar">
+									<div class="goog-tab list">
+										Lists
+									</div>
+									<div class="goog-tab outline">
+										Outline
+									</div>
+								</div>
+								<dl id="doc_list">
+									<dt>
+										FAQ
+									</dt>
+									<dd>
+										<a href="#">ドキュメントの読み方</a>
+									</dd>
+									<dd>
+										<a href="#">ドキュメントの書き方</a>
+									</dd>
+									<dt>
+										要件定義
+									</dt>
+									<dd>
+										<a href="#">機能要件</a>
+									</dd>
+									<dd>
+										<a href="#">非機能要件</a>
+									</dd>
+									<dt>
+										機能仕様
+									</dt>
+									<dd>
+										<a href="#">リソース管理</a>
+									</dd>
+									<dd>
+										<a href="#">タスク管理</a>
+									</dd>
+									<dd>
+										<a href="#">ドキュメント管理</a>
+									</dd>
+									<dd>
+										<a href="#">認証・認可</a>
+									</dd>
+									<dd>
+										<a href="#">統計データ処理</a>
+									</dd>
+									<dd>
+										<a href="#">バッチ処理</a>
+									</dd>
+									<dt>
+										実行環境
+									</dt>
+									<dd>
+										<a href="#">ローカル開発環境</a>
+									</dd>
+									<dd>
+										<a href="#">結合テスト環境</a>
+									</dd>
+									<dd>
+										<a href="#">CI環境</a>
+									</dd>
+									<dd>
+										<a href="#">QA環境</a>
+									</dd>
+									<dd>
+										<a href="#">本番環境</a>
+									</dd>
+									<dt>
+										開発プロセス
+									</dt>
+									<dd>
+										<a href="#">機能仕様承認フロー</a>
+									</dd>
+									<dd>
+										<a href="#">実装レビューフロー</a>
+									</dd>
+									<dd>
+										<a href="#">機能テストフロー</a>
+									</dd>
+									<dd>
+										<a href="#">デプロイフロー</a>
+									</dd>
+									<dd>
+										<a href="#">統計データ評価</a>
+									</dd>
+									<dt>
+										ユーザマニュアル
+									</dt>
+									<dd>
+										<a href="#">インストールマニュアル</a>
+									</dd>
+									<dd>
+										<a href="#">運用マニュアル</a>
+									</dd>
+									<dd>
+										<a href="#">対外向けプレゼン資料</a>
+									</dd>
+									<dt>
+										体制
+									</dt>
+									<dd>
+										<a href="#">要件定義チーム</a>
+									</dd>
+									<dd>
+										<a href="#">実装チーム</a>
+									</dd>
+									<dd>
+										<a href="#">QAチーム</a>
+									</dd>
+									<dt>
+										砂場
+									</dt>
+									<dd>
+										<a href="#">穴</a>
+									</dd>
+									<dd>
+										<a href="#">炎</a>
+									</dd>
+								</dl>
 							</div>
 							<div class="doc_main_area">
 								<div class="content_menu">
@@ -681,6 +799,69 @@ __    _          _       _   _       _
 									こんてんと
 								</div>
 							</div>
+						</div><!-- <div id="doc_main_pane"> -->
+						<div id="doc_list_pane" style="display: none;">
+							ドキュメント一覧及び、インデックス的なアレ。
+							<br/>
+							構造化されたドキュメント構造を俯瞰出来る感じ。
+							<br/>
+							ファイラーのディレクトリツリーの様なものかもしれない。
+						</div>
+						<div id="doc_history_pane" style="display: none;">
+							ドキュメントの編集履歴。要はコミットログと編集時のコメント
+							<br/>
+							<!-- jquery.bottom.js的な何かでロードする。 -->
+							<table class="gradient icon_table" summary="commit logs">
+								<thead>
+									<tr>
+										<th class="icon"></th>
+										<th class="auther">auther</th>
+										<th class="resource">resource</th>
+										<th class="timestamp">timestamp</th>
+										<th class="commitmessage">message</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+										<td>taichi 1</td>
+										<td>qa.md</td>
+										<td>2011-08-31 12:31:24</td>
+										<td>yah!</td>
+									</tr>
+									<tr>
+										<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+										<td>taichi 2</td>
+										<td>devlopment.md</td>
+										<td>2011-08-30 12:31:24</td>
+										<td>damn it!</td>
+									</tr>
+									<tr>
+										<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+										<td>taichi 3</td>
+										<td>テスト環境.md</td>
+										<td>2011-08-29 12:31:24</td>
+										<td>lol!</td>
+									</tr>
+									<tr>
+										<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+										<td>taichi 4</td>
+										<td>非機能要件定義.md</td>
+										<td>2011-08-28 12:31:24</td>
+										<td>help me!</td>
+									</tr>
+									<tr>
+										<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+										<td>taichi 5</td>
+										<td>実装チーム.md</td>
+										<td>2011-08-27 12:31:24</td>
+										<td>fix bug!</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div id="doc_raw_pane" style="display: none;">
+							バックエンドたるGitへのアクセスURI。historyに統合して良いかもしれない。
 						</div>
 					</div>
 				</div><!-- <div class="contents_projects"> -->
