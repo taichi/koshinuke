@@ -653,24 +653,15 @@ __    _          _       _   _       _
 						</div>
 						<div id="doc_main_pane">
 							<div class="doc_sidebar">
-								<div class="goog-tab-bar">
-									<div class="goog-tab list">
-										Lists
+								<div id="doc_sidebar_tab" class="goog-tab-bar">
+									<div class="goog-tab list active" for="doc_side_lists">
+										<a href="#">Lists</a>
 									</div>
-									<div class="goog-tab outline">
-										Outline
+									<div class="goog-tab outline inactive" for="doc_side_outline">
+										<a href="#">Outline</a>
 									</div>
 								</div>
-								<dl id="doc_list">
-									<dt>
-										FAQ
-									</dt>
-									<dd>
-										<a href="#">ドキュメントの読み方</a>
-									</dd>
-									<dd>
-										<a href="#">ドキュメントの書き方</a>
-									</dd>
+								<dl id="doc_side_lists" class="doc_side_content doc_side_lists">
 									<dt>
 										要件定義
 									</dt>
@@ -771,6 +762,15 @@ __    _          _       _   _       _
 										<a href="#">炎</a>
 									</dd>
 								</dl>
+								<dl id="doc_side_outline" class="doc_side_content doc_side_outline" style="display: none;">
+									<dt><a href="#">はじめに</a></dt>
+									<dd>
+										<a href="#">ドキュメントの読み方</a>
+									</dd>
+									<dd>
+										<a href="#">ドキュメントの書き方</a>
+									</dd>
+								</dl>
 							</div>
 							<div class="doc_main_area">
 								<div class="content_menu">
@@ -779,17 +779,17 @@ __    _          _       _   _       _
 									</div>
 									<ul>
 										<li>
-											<button>
+											<button id="doc_history">
 												Page History
 											</button>
 										</li>
 										<li>
-											<button>
+											<button id="doc_edit">
 												Edit Page
 											</button>
 										</li>
 										<li>
-											<button>
+											<button id="doc_new">
 												New Page
 											</button>
 										</li>

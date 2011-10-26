@@ -287,4 +287,22 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	docMainTab.currentPane = 'doc_main_pane';
 	docMainTab.decorate(goog.dom.getElement('document_tab'));
 	listenSwitch(docMainTab);
+	//
+	//
+	var docSidebarTab = new goog.ui.TabBar();
+	// hack
+	docSidebarTab.currentPane = 'doc_side_lists';
+	docSidebarTab.decorate(goog.dom.getElement('doc_sidebar_tab'));
+	listenSwitch(docSidebarTab);
+	goog.events.listen(docSidebarTab, goog.ui.Component.EventType.SELECT, function(e) {
+		var el = e.target.getElement();
+		goog.dom.classes.add(el, "active");
+		goog.dom.classes.remove(el, "inactive");
+	});
+	goog.events.listen(docSidebarTab, goog.ui.Component.EventType.UNSELECT, function(e) {
+		var el = e.target.getElement();
+		goog.dom.classes.add(el, "inactive");
+		goog.dom.classes.remove(el, "active");
+	});
+	docSidebarTab.setSelectedTabIndex(0);
 });
