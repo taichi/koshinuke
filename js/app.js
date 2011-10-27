@@ -29,6 +29,9 @@ goog.require('org.koshinuke.template');
 goog.require('org.koshinuke.ui.Breadcrumb');
 
 function renderDocumentTree() {
+	var conf = goog.ui.tree.TreeControl.defaultConfig;
+	conf['cleardotPath'] = 'images/cleardot.gif';
+	var tree = new goog.ui.tree.TreeControl("root", conf);
 	renderRemoteData('doc_list.json', function(e) {
 		function makeTree(node, json) {
 			if(json[0]) {
@@ -44,13 +47,11 @@ function renderDocumentTree() {
 		}
 
 		var data = goog.json.parse(e.target.getResponseText());
-		var conf = goog.ui.tree.TreeControl.defaultConfig;
-		conf['cleardotPath'] = 'images/cleardot.gif';
-		var tree = new goog.ui.tree.TreeControl("root", conf);
 		makeTree(tree, data);
 
 		tree.render(goog.dom.getElement('doc_side_lists'));
 	});
+	return tree;
 }
 
 function renderRemoteData(path, fn) {
@@ -69,7 +70,6 @@ function renderCommitGraph() {
 
 goog.exportSymbol('org.koshinuke.main', function() {
 	renderCommitGraph();
-	renderDocumentTree();
 	org.koshinuke.PubSub = new goog.pubsub.PubSub();
 	REPO_LOCATION_STATE = "repo.loc.state";
 
@@ -337,4 +337,12 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		goog.dom.classes.remove(el, "active");
 	});
 	docSidebarTab.setSelectedTabIndex(0);
+
+	var docListsTree = renderDocumentTree();
+	goog.events.listen(docListsTree, goog.ui.Component.EventType.CHANGE, function(e) {
+		var selected = e.target.getSelectedItem();
+		if(selected) {
+			console.log(selected.getText());
+		}
+	});
 });
