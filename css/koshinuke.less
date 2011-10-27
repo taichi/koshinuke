@@ -11,7 +11,6 @@
 @import "type.less";
 @import "patterns.less";
 
-@import "tree.less";
 
 @filter:	#38a1db; // type毎に色変える？
 
@@ -27,6 +26,8 @@
 @doc_side_outline: #eaf4fc;
 @doc_main_bg: #e8ecef;
 
+@import "tree.less";
+
 .doc_topmenu {
 	.clearfix;
 	#radius > .around();
@@ -39,7 +40,7 @@
 	float: left;
 	height: 100%;
 	margin-left: -20px;
-	width: 128px;
+	width: 150px;
 
 	.goog-tab-bar {
 		outline: none;
@@ -49,7 +50,7 @@
 			float: left;
 			font-size: large;
 			line-height: @baseline * 2;
-			width: 60px;
+			width: 71px;
 			text-align: center;
 			#radius > .top();
 			padding: 0 2px;
@@ -86,14 +87,15 @@
 	
 	.doc_side_content {
 		#radius > .bottom();
-		padding: 0 2px;
+		padding-bottom: 2px;
 		border: 1px #DDD;
 		border-style: none solid solid solid;
+		//height: 100%;
+		overflow: auto;
 		
 		&.doc_side_lists {
 			background-color: @doc_side_list;
 		}
-		
 		&.doc_side_outline {
 			background-color: @doc_side_outline;
 		}
@@ -102,7 +104,7 @@
 
 .doc_main_area {
 	.clearfix;
-	margin-left: 115px;
+	margin-left: 140px;
 	min-width: 400px;
 	.content_menu {
 		height: 35px;

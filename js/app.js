@@ -8,6 +8,7 @@ goog.require('goog.events');
 goog.require('goog.graphics');
 goog.require('goog.graphics.Font');
 goog.require('goog.graphics.SvgGraphics');
+goog.require('goog.json');
 goog.require('goog.net.XhrIo');
 goog.require('goog.object');
 goog.require('goog.pubsub.PubSub');
@@ -20,16 +21,46 @@ goog.require('goog.ui.TabBar');
 goog.require('goog.ui.Tooltip');
 goog.require('goog.ui.PopupMenu');
 goog.require('goog.ui.TableSorter');
+goog.require('goog.ui.tree.TreeControl');
 goog.require('ZeroClipboard');
 
 goog.require('org.koshinuke.positioning.GravityPosition');
 goog.require('org.koshinuke.template');
 goog.require('org.koshinuke.ui.Breadcrumb');
 
-function renderCommitGraph() {
+function renderDocumentTree() {
+	renderRemoteData('doc_list.json', function(e) {
+		function makeTree(node, json) {
+			if(json[0]) {
+				node.setText(json[0]);
+			}
+			if(json[1]) {
+				goog.array.forEach(json[1], function(d) {
+					var newone = node.getTree().createNode();
+					node.add(newone);
+					makeTree(newone, d);
+				});
+			}
+		}
+
+		var data = goog.json.parse(e.target.getResponseText());
+		var conf = goog.ui.tree.TreeControl.defaultConfig;
+		conf['cleardotPath'] = 'images/cleardot.gif';
+		var tree = new goog.ui.tree.TreeControl("root", conf);
+		makeTree(tree, data);
+
+		tree.render(goog.dom.getElement('doc_side_lists'));
+	});
+}
+
+function renderRemoteData(path, fn) {
 	var ownUri = new goog.Uri(window.location.href);
-	var dataUri = ownUri.resolve(new goog.Uri('BranchGraph.xml'));
-	goog.net.XhrIo.send(dataUri.toString(), function(e){
+	var dataUri = ownUri.resolve(new goog.Uri(path));
+	goog.net.XhrIo.send(dataUri.toString(), fn);
+}
+
+function renderCommitGraph() {
+	renderRemoteData('BranchGraph.xml', function(e) {
 		var svg = e.target.getResponseText();
 		var el = goog.dom.getElement("commitGraph");
 		el.innerHTML = svg;
@@ -38,6 +69,7 @@ function renderCommitGraph() {
 
 goog.exportSymbol('org.koshinuke.main', function() {
 	renderCommitGraph();
+	renderDocumentTree();
 	org.koshinuke.PubSub = new goog.pubsub.PubSub();
 	REPO_LOCATION_STATE = "repo.loc.state";
 
@@ -127,7 +159,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		toggleTab(next, true);
 		tabbar.currentPane = next;
 	}
-	
+
 	function listenSwitch(tab) {
 		goog.events.listen(tab, goog.ui.Component.EventType.SELECT, function(e) {
 			var el = e.target.getElement();
@@ -135,7 +167,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 			switchTab(tab, next);
 		});
 	}
-	
+
 	listenSwitch(projMainTab);
 
 	goog.array.forEach([{

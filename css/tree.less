@@ -103,21 +103,23 @@
   vertical-align: middle;
   height: 16px;
   width: 16px;
-  background-position: -0px -24px;
+//  background-position: -0px -24px;
+  background-image: url(../images/dir.png);
 }
 
 .goog-tree-expanded-folder-icon {
   vertical-align: middle;
   height: 16px;
   width: 16px;
-  background-position: -24px -24px;
+//  background-position: -24px -24px;
+  background-image: url(../images/dir.png);
 }
 
 .goog-tree-file-icon {
   vertical-align: middle;
   height: 16px;
   width: 16px;
-  background-position: -48px -24px;
+  background-image: url(../images/txt.png);
 }
 
 .goog-tree-item-label {
@@ -126,20 +128,22 @@
   text-decoration: none;
   color: WindowText;
   cursor: default;
+  font-size: small;
+  #radius > .around();
 }
 
 .goog-tree-item-label:hover {
   text-decoration: underline;
 }
 
+@tree_label_color: #eaedf7;
+
 .selected .goog-tree-item-label {
-  background-color: ButtonFace;
-  color: ButtonText;
+  background-color: darken(@tree_label_color, 10%);
 }
 
 .focused .selected .goog-tree-item-label {
-  background-color: Highlight;
-  color: HighlightText;
+  background-color: darken(@tree_label_color, 20%);
 }
 
 .goog-tree-hide-root {
