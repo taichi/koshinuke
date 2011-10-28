@@ -4,35 +4,6 @@
  */
 goog.provide('outliner.createOutline');
 
-outliner.f = function(outline, indent) {
-	var t = '';
-	for(var i = 0; i < outline.length; i++) {
-		var section = outline[i];
-		var element = section.headElement || section.element;
-		t += indent + outliner.trunc(outliner.text(element).replace(/\s+/g, ' ')) + '\n';
-		t += outliner.f(section.childs, indent + '    ');
-	}
-	return t;
-}
-
-outliner.text = function(node) {
-	if(node.nodeType == 3) {
-		return node.nodeValue;
-	} else {
-		if(node.nodeName.toLowerCase() == 'img') {
-			return node.getAttribute('alt') || '';
-		} else {
-			return (function f(node) {
-				return node ? outliner.text(node) + f(node.nextSibling) : '';
-			})(node.firstChild);
-		}
-	}
-}
-
-outliner.trunc = function(text) {
-	return (text.length > 20) ? text.substr(0, 20) + '...' : text;
-}
-
 outliner.createOutline = function(document) {
 
 	// Let current outlinee be null. (It holds the element whose outline is being created.)

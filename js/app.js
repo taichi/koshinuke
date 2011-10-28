@@ -28,6 +28,58 @@ goog.require('org.koshinuke.positioning.GravityPosition');
 goog.require('org.koshinuke.template');
 goog.require('org.koshinuke.ui.Breadcrumb');
 
+function text(node) {
+	if(node.nodeType == 3) {
+		return node.nodeValue;
+	} else {
+		if(node.nodeName.toLowerCase() == 'img') {
+			return node.getAttribute('alt') || '';
+		} else {
+			return (function f(node) {
+				return node ? text(node) + f(node.nextSibling) : '';
+			})(node.firstChild);
+		}
+	}
+}
+
+function renderOutlineTree() {
+	var ids = 0;
+
+	function linkName() {
+		return "#doc_" + ids++;
+	}
+
+	function addElement(parent, section, tag) {
+		var el = section.headElement || section.element;
+		var content = text(el).replace(/\s+/g, ' ');
+		var n = linkName();
+		var to = goog.dom.createDom('a', {
+			name : n
+		});
+		goog.dom.insertSiblingBefore(to, el);
+		var txt = goog.dom.createTextNode(content);
+		var from = goog.dom.createDom('a', {
+			href : n
+		});
+		from.appendChild(txt);
+		var newone = goog.dom.createElement(tag);
+		newone.appendChild(from);
+		parent.appendChild(newone);
+	}
+
+	var src = outliner.createOutline(document);
+	var parent = goog.dom.getElement('doc_side_outline');
+	goog.array.forEach(src, function(outer) {
+		addElement(parent, outer, 'dt');
+		var kids = outer.childs;
+		if(kids) {
+			goog.array.forEach(kids, function(section) {
+				addElement(parent, section, 'dd');
+			});
+		}
+	});
+}
+
 function renderDocumentTree() {
 	var conf = goog.ui.tree.TreeControl.defaultConfig;
 	conf['cleardotPath'] = 'images/cleardot.gif';
@@ -70,6 +122,7 @@ function renderCommitGraph() {
 
 goog.exportSymbol('org.koshinuke.main', function() {
 	renderCommitGraph();
+	renderOutlineTree();
 	org.koshinuke.PubSub = new goog.pubsub.PubSub();
 	REPO_LOCATION_STATE = "repo.loc.state";
 
