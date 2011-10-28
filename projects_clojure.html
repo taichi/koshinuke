@@ -116,19 +116,19 @@ __    _          _       _   _       _
 										</div>
 									</div>
 								</div>
-								<div id="protocols">
+								<div class="protocols">
 									<div class="goog-tab middle" >
-										<a href="username@koshinuke.org:koshinuke/org.koshinuke.git" desc="Read+Write">SSH</a>
+										<a href="username@koshinuke.org:koshinuke/org.koshinuke.git" desc="Read+Write" descat="url-desc" for="url-box">SSH</a>
 									</div>
 									<div class="goog-tab middle">
-										<a href="https://username@koshinuke.org/koshinuke/org.koshinuke.git" desc="Read+Write">HTTPS</a>
+										<a href="https://username@koshinuke.org/koshinuke/org.koshinuke.git" desc="Read+Write" descat="url-desc" for="url-box">HTTPS</a>
 									</div>
 									<div class="goog-tab middle">
-										<a href="git://koshinuke.org/koshinuke/org.koshinuke.git" desc="Read-Only">Git</a>
+										<a href="git://koshinuke.org/koshinuke/org.koshinuke.git" desc="Read-Only" descat="url-desc" for="url-box">Git</a>
 									</div>
 								</div>
-								<input type="text" id="url-box" class="end" value="username@koshinuke.org:koshinuke/org.koshinuke.git" readonly="r"/>
-								<span id="clip-container"><img id="clip-btn" src="images/copy_button_up.png" alt="copy"/></span>
+								<input type="text" id="url-box" class="url-box end" value="username@koshinuke.org:koshinuke/org.koshinuke.git" readonly="readonly"/>
+								<span class="clip-container"><img id="clip-btn" src="images/copy_button_up.png" alt="copy" from="url-box"/></span>
 								<div class="desc-container">
 									<b id="url-desc">Read+Write</b>&nbsp;access
 								</div>
@@ -647,12 +647,9 @@ __    _          _       _   _       _
 								<div class="goog-tab" for="doc_history_pane">
 									<a href="#">History</a>
 								</div>
-								<div class="goog-tab" for="doc_raw_pane">
-									<a href="#">Raw Access</a>
-								</div>
 							</div>
 						</div>
-						<div id="doc_main_pane">
+						<div id="doc_main_pane" style="display: none;">
 							<div class="doc_sidebar">
 								<div id="doc_sidebar_tab" class="goog-tab-bar">
 									<div class="goog-tab list active" for="doc_side_lists">
@@ -662,10 +659,8 @@ __    _          _       _   _       _
 										<a href="#">Outline</a>
 									</div>
 								</div>
-								<div id="doc_side_lists" class="doc_side_content doc_side_lists">
-								</div>
-								<dl id="doc_side_outline" class="doc_side_content doc_side_outline" style="display: none;">
-								</dl>
+								<div id="doc_side_lists" class="doc_side_content doc_side_lists"></div>
+								<dl id="doc_side_outline" class="doc_side_content doc_side_outline" style="display: none;"></dl>
 							</div>
 							<div class="doc_main_area">
 								<div class="content_menu">
@@ -693,18 +688,30 @@ __    _          _       _   _       _
 								<div id="doc_content" class="doc_content">
 									<h2>はじめに</h2>
 									<h3>ドキュメントの読み方</h3>
-									<p>最初に開発環境を作るのです。</p>
+									<p>
+										最初に開発環境を作るのです。
+									</p>
 									<h3>ドキュメントの書き方</h3>
-									<p>ドキュメントはブラウザベースでmarkdownを記述するのです。</p>
+									<p>
+										ドキュメントはブラウザベースでmarkdownを記述するのです。
+									</p>
 									<h2>その次に</h2>
 									<h3>テスト環境</h3>
-									<p>テスト用のアカウントを貰うのです</p>
+									<p>
+										テスト用のアカウントを貰うのです
+									</p>
 									<h3>テスト手順</h3>
-									<p>単体テスト、レビュー、リリースの手順を把握するのです。</p>
+									<p>
+										単体テスト、レビュー、リリースの手順を把握するのです。
+									</p>
 									<h4>単体テスト</h4>
-									<p>単体テスト範囲はどこぞなもし。</p>
+									<p>
+										単体テスト範囲はどこぞなもし。
+									</p>
 									<h4>レビュー</h4>
-									<p>チーム体制を確認するのです。</p>
+									<p>
+										チーム体制を確認するのです。
+									</p>
 								</div>
 							</div>
 						</div><!-- <div id="doc_main_pane"> -->
@@ -715,61 +722,78 @@ __    _          _       _   _       _
 							<br/>
 							ファイラーのディレクトリツリーの様なものかもしれない。
 						</div>
-						<div id="doc_history_pane" style="display: none;">
-							ドキュメントの編集履歴。要はコミットログと編集時のコメント
-							<br/>
-							<!-- jquery.bottom.js的な何かでロードする。 -->
-							<table class="gradient icon_table" summary="commit logs">
-								<thead>
-									<tr>
-										<th class="icon"></th>
-										<th class="auther">auther</th>
-										<th class="resource">resource</th>
-										<th class="timestamp">timestamp</th>
-										<th class="commitmessage">message</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
-										<td>taichi 1</td>
-										<td>qa.md</td>
-										<td>2011-08-31 12:31:24</td>
-										<td>yah!</td>
-									</tr>
-									<tr>
-										<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
-										<td>taichi 2</td>
-										<td>devlopment.md</td>
-										<td>2011-08-30 12:31:24</td>
-										<td>damn it!</td>
-									</tr>
-									<tr>
-										<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
-										<td>taichi 3</td>
-										<td>テスト環境.md</td>
-										<td>2011-08-29 12:31:24</td>
-										<td>lol!</td>
-									</tr>
-									<tr>
-										<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
-										<td>taichi 4</td>
-										<td>非機能要件定義.md</td>
-										<td>2011-08-28 12:31:24</td>
-										<td>help me!</td>
-									</tr>
-									<tr>
-										<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
-										<td>taichi 5</td>
-										<td>実装チーム.md</td>
-										<td>2011-08-27 12:31:24</td>
-										<td>fix bug!</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<div id="doc_raw_pane" style="display: none;">
-							バックエンドたるGitへのアクセスURI。historyに統合して良いかもしれない。
+						<div id="doc_history_pane">
+							<div class="row">
+								<div class="repo-urls">
+									<div class="protocols">
+										<div class="goog-tab begin" >
+											<a href="username@koshinuke.org:koshinuke/org.koshinuke.wiki.git" desc="Read+Write" descat="doc-url-desc" for="doc-url-box">SSH</a>
+										</div>
+										<div class="goog-tab middle">
+											<a href="https://username@koshinuke.org/koshinuke/org.koshinuke.wiki.git" desc="Read+Write" descat="doc-url-desc" for="doc-url-box">HTTPS</a>
+										</div>
+										<div class="goog-tab middle">
+											<a href="git://koshinuke.org/koshinuke/org.koshinuke.wiki.git" desc="Read-Only" descat="doc-url-desc" for="doc-url-box">Git</a>
+										</div>
+									</div>
+									<input type="text" id="doc-url-box" class="url-box end" value="username@koshinuke.org:koshinuke/org.koshinuke.wiki.git" readonly="readonly"/>
+									<span class="clip-container"><img id="doc-clip-btn" src="images/copy_button_up.png" alt="copy" from="doc-url-box"/></span>
+									<div class="desc-container">
+										<b id="doc-url-desc">Read+Write</b>&nbsp;access
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<!-- jquery.bottom.js的な何かでロードする。 -->
+								<table class="gradient icon_table" summary="commit logs">
+									<thead>
+										<tr>
+											<th class="icon"></th>
+											<th class="auther">auther</th>
+											<th class="resource">resource</th>
+											<th class="timestamp">timestamp</th>
+											<th class="commitmessage">message</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+											<td>taichi 1</td>
+											<td>qa.md</td>
+											<td>2011-08-31 12:31:24</td>
+											<td>yah!</td>
+										</tr>
+										<tr>
+											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+											<td>taichi 2</td>
+											<td>devlopment.md</td>
+											<td>2011-08-30 12:31:24</td>
+											<td>damn it!</td>
+										</tr>
+										<tr>
+											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+											<td>taichi 3</td>
+											<td>テスト環境.md</td>
+											<td>2011-08-29 12:31:24</td>
+											<td>lol!</td>
+										</tr>
+										<tr>
+											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+											<td>taichi 4</td>
+											<td>非機能要件定義.md</td>
+											<td>2011-08-28 12:31:24</td>
+											<td>help me!</td>
+										</tr>
+										<tr>
+											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+											<td>taichi 5</td>
+											<td>実装チーム.md</td>
+											<td>2011-08-27 12:31:24</td>
+											<td>fix bug!</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div><!-- <div class="contents_projects"> -->

@@ -223,10 +223,10 @@ outliner.createOutline = function(document) {
 
 		// In addition, whenever you exit a node, after doing the steps above,
 		// if current section is not null,
-		if(exit && section) {
+		// if(exit && section) {
 			// associate the node with the section current section.
 			// Note: not imlementation
-		}
+		//}
 
 		return goNext;
 	}

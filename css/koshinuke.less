@@ -352,7 +352,6 @@
 				color: @white;
 				text-shadow: -1px -1px 0 @grayLight;
 				#gradient > .vertical(@blue, @blueDark);
-				
 			}
 		}
 		.goog-menu {
@@ -364,10 +363,8 @@
 		.goog-menuitem a:hover {
 			.border-radius(3px);
 		}
-		.divider {
-		}
 	}
-	#url-box {
+	.url-box {
 		display: block;
 		float: left;
 		width: 320px;
@@ -379,8 +376,9 @@
 		color: @gray;
 		background-color: @white;
 	}
-	#protocols {
+	.protocols {
 		outline: none;
+		float: left;
 		div {
 			float: left;
 			a {
@@ -422,12 +420,21 @@
 		border-left: 0;
 		#radius > .right(3px);
 	}
-	#protocols, #clip-container {
+	
+	.clip-container {
 		float: left;
+
+		img {
+			margin: 6px;
+			width: 14px;
+			height: 14px;
+		}
 	}
 	.desc-container {
 		padding: 4px;
 	}
+	
+	
 }
 
 // breadcrumbs

@@ -180,7 +180,7 @@ ZeroClipboard.Client.prototype = {
 		// reposition our floating div, optionally to new container
 		// warning: container CANNOT change size, only position
 		if(elem) {
-			this.domElement = ZeroClipboard.$(elem);
+			this.domElement = goog.dom.getElement(elem);
 			if(!this.domElement)
 				this.hide();
 		}
