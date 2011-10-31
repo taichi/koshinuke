@@ -92,7 +92,7 @@ __    _          _       _   _       _
 						<a href="#" active="images/git.png" inactive="images/git_gray.png" for="git_contents"><img class="icon tooltipable" src="images/git_gray.png" alt="Repository"/></a>
 					</div>
 					<div class="goog-tab">
-						<a href="#" active="images/web.png" inactive="images/web_gray.png" for="issue_contents"><img class="icon tooltipable" src="images/web_gray.png" alt="Issues"/></a>
+						<a href="#" active="images/web.png" inactive="images/web_gray.png" for="tt_contents"><img class="icon tooltipable" src="images/web_gray.png" alt="Issues"/></a>
 					</div>
 					<div class="goog-tab">
 						<a href="#" active="images/document.png" inactive="images/document_gray.png" for="document_contents"><img class="icon tooltipable" src="images/document_gray.png" alt="Documents" /></a>
@@ -631,8 +631,29 @@ __    _          _       _   _       _
 							</div><!-- <div class="panes"> -->
 						</div>
 					</div><!-- <div id="git_contents"> -->
-					<div id="issue_contents" style="display: none;">
-						タスク管理的なアレ
+					<div id="tt_contents" style="display: none;">
+						<div class="_topmenu">
+							<div id="tt_tab" class="goog-tab-bar goog-tabs">
+								<div class="goog-tab goog-tab-selected" for="tt_list_pane">
+									<a href="#">Lists</a>
+								</div>
+								<div class="goog-tab" for="tt_history_pane">
+									<a href="#">History</a>
+								</div>
+								<div class="goog-tab" for="tt_deps_graph_pane">
+									<a href="#">Deps Graph</a>
+								</div>
+							</div>
+						</div>
+						<div id="tt_list_pane">
+							タスク一覧
+						</div>
+						<div id="tt_history_pane" style="display: none;">
+							タスクの変更履歴的
+						</div>
+						<div id="tt_deps_graph_pane" style="display: none;">
+							タスクの依存関係グラフ
+						</div>
 					</div>
 					<div id="document_contents" style="display: none;">
 						<!-- http://www.quietwrite.com/ とか、http://substance.io/ みたいな感じにしたい。-->
@@ -723,7 +744,7 @@ __    _          _       _   _       _
 							ファイラーのディレクトリツリーの様なものかもしれない。
 						</div>
 						<div id="doc_history_pane">
-							<div class="row">
+							<div>
 								<div class="repo-urls">
 									<div class="protocols">
 										<div class="goog-tab begin" >
@@ -743,7 +764,7 @@ __    _          _       _   _       _
 									</div>
 								</div>
 							</div>
-							<div class="row">
+							<div>
 								<!-- jquery.bottom.js的な何かでロードする。 -->
 								<table class="gradient icon_table" summary="commit logs">
 									<thead>

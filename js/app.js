@@ -171,7 +171,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	goog.events.listen(projSideTab, goog.ui.Component.EventType.UNSELECT, function(e) {
 		switchProjectSideTab(e, "inactive");
 	});
-	projSideTab.setSelectedTabIndex(2);
+	projSideTab.setSelectedTabIndex(1);
 	goog.array.forEach(goog.dom.query('#sidemenu_projects a'), function(el) {
 		goog.events.listen(el, goog.events.EventType.CLICK, function(e) {
 			//e.preventDefault();
@@ -380,6 +380,14 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		component.setDefaultSortFunction(goog.ui.TableSorter.alphaSort);
 		component.setSortFunction(0, goog.ui.TableSorter.noSort);
 	});
+	//
+	//
+	var ttTab = new goog.ui.TabBar();
+	// hack
+	ttTab.currentPane = 'tt_list_pane';
+	ttTab.decorate(goog.dom.getElement('tt_tab'));
+	listenSwitch(ttTab);
+	ttTab.setSelectedTabIndex(0);
 	//
 	//
 	var docMainTab = new goog.ui.TabBar();
