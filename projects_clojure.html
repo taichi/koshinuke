@@ -176,7 +176,7 @@ __    _          _       _   _       _
 									<div class="label_filter">
 										Filter
 									</div>
-									<fieldset id="branch_filters">
+									<fieldset id="branch_filters" class="branch_filters">
 										<div class="filter">
 											<label class="active">
 												<input type="checkbox" value="shared" checked="true"/>
@@ -646,6 +646,28 @@ __    _          _       _   _       _
 							</div>
 						</div>
 						<div id="tt_list_pane">
+							<div class="tt_menu">
+								<div class="filters">
+									Filters
+								</div>
+								<ul>
+									<li>
+										<button id="tt_history" class="btn">
+											Task History
+										</button>
+									</li>
+									<li>
+										<button id="tt_edit" class="btn">
+											Edit Task
+										</button>
+									</li>
+									<li>
+										<button id="tt_new" class="btn">
+											New Task
+										</button>
+									</li>
+								</ul>
+							</div>
 							<table class="gradient" summary="task lists">
 								<thead>
 									<tr>
@@ -713,17 +735,17 @@ __    _          _       _   _       _
 									</div>
 									<ul>
 										<li>
-											<button id="doc_history">
+											<button id="doc_history" class="btn">
 												Page History
 											</button>
 										</li>
 										<li>
-											<button id="doc_edit">
+											<button id="doc_edit" class="btn">
 												Edit Page
 											</button>
 										</li>
 										<li>
-											<button id="doc_new">
+											<button id="doc_new" class="btn">
 												New Page
 											</button>
 										</li>
