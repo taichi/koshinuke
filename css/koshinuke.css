@@ -1,18 +1,11 @@
 .topbar .container {
 	margin-left: 40px;
 }
-#page-outer {
-	padding-top: 50px;
-	margin: 0 10px 0 80px;
-}
+
 .icon {
 	margin-right: 3px;
 	width: 32px;
 	height: 32px;
-}
-.row {
-	margin-bottom: 7px;
-	min-width: 400px;
 }
 th.auther {
 	width: 110px;

@@ -171,7 +171,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	goog.events.listen(projSideTab, goog.ui.Component.EventType.UNSELECT, function(e) {
 		switchProjectSideTab(e, "inactive");
 	});
-	projSideTab.setSelectedTabIndex(1);
+	projSideTab.setSelectedTabIndex(2);
 	goog.array.forEach(goog.dom.query('#sidemenu_projects a'), function(el) {
 		goog.events.listen(el, goog.events.EventType.CLICK, function(e) {
 			//e.preventDefault();
@@ -395,7 +395,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	docMainTab.currentPane = 'doc_main_pane';
 	docMainTab.decorate(goog.dom.getElement('document_tab'));
 	listenSwitch(docMainTab);
-	docMainTab.setSelectedTabIndex(2);
+	docMainTab.setSelectedTabIndex(0);
 	//
 	//
 	var docSidebarTab = new goog.ui.TabBar();
