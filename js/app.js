@@ -423,12 +423,43 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		}
 	});
 	var myTextArea = goog.dom.getElement('editor-textarea');
-	window.cm = CodeMirror(function(elt) {
+	var converter = new Showdown.converter();
+	var cm = CodeMirror(function(elt) {
 		myTextArea.parentNode.replaceChild(elt, myTextArea);
 	}, {
 		mode : "markdown",
 		lineNumbers : true,
 		lineWrapping : true,
-		value : myTextArea.value
+		value : myTextArea.value,
+		onHighlightComplete : function(editor) {
+			var txt = editor.getValue();
+			updatePreview(txt);
+		}
 	});
+
+	function updatePreview(txt) {
+		var html = converter.makeHtml(txt);
+		var el = goog.dom.getElement('editor-area-preview');
+		el.innerHTML = html;
+		setEditorSize();
+	}
+
+	function setEditorSize() {
+		var editor_main = goog.dom.getElement('editor-main');
+		var size = goog.style.getSize(editor_main);
+		var input = goog.dom.getElement('editor-area-input');
+		input.style.cssText = "max-width: " + (size.width * 0.49) + "px";
+		var scroll = goog.dom.query(".CodeMirror-scroll")[0];
+		if(scroll) {
+			var s = goog.style.getSize(input);
+			goog.style.setHeight(scroll, s.height);
+		}
+		var prev = goog.dom.getElement('editor-area-preview');
+		prev.style.cssText = "max-width: " + (size.width * 0.5) + "px";
+	}
+
+	updatePreview(myTextArea.value);
+	setEditorSize();
+
+	goog.events.listen(window, goog.events.EventType.RESIZE, setEditorSize);
 });

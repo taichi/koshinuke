@@ -883,14 +883,6 @@ var CodeMirror = (function() {
       showingFrom = from; showingTo = to;
       displayOffset = heightAtLine(doc, from);
       mover.style.top = (displayOffset * th) + "px";
-      
-      //////////////////////////////////////////////////////
-      /*console.log(doc);
-      console.log(from);
-      console.log(displayOffset + " " + th);
-      console.log(mover.style.top);*/
-      //////////////////////////////////////////////////////
-      
       code.style.height = (doc.height * th + 2 * paddingTop()) + "px";
 
       // Since this is all rather error prone, it is honoured with the
