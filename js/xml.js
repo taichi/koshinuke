@@ -1,3 +1,6 @@
+goog.provide('CodeMirror.xml');
+goog.require('CodeMirror');
+
 CodeMirror.defineMode("xml", function(config, parserConfig) {
   var indentUnit = config.indentUnit;
   var Kludges = parserConfig.htmlMode ? {

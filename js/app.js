@@ -25,6 +25,10 @@ goog.require('goog.ui.TableSorter');
 goog.require('goog.ui.tree.TreeControl');
 goog.require('ZeroClipboard');
 goog.require('outliner.createOutline');
+goog.require('CodeMirror');
+goog.require('CodeMirror.markdown');
+goog.require('CodeMirror.xml');
+goog.require('Showdown');
 
 goog.require('org.koshinuke.positioning.GravityPosition');
 goog.require('org.koshinuke.template');

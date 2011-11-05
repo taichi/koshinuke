@@ -1,6 +1,7 @@
 // All functions that need access to the editor's state live inside
 // the CodeMirror function. Below that, at the bottom of the file,
 // some utilities are defined.
+goog.provide('CodeMirror');
 
 // CodeMirror is the only global var we claim
 var CodeMirror = (function() {
