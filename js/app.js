@@ -422,4 +422,13 @@ goog.exportSymbol('org.koshinuke.main', function() {
 			console.log(selected.getText());
 		}
 	});
+	var myTextArea = goog.dom.getElement('editor-textarea');
+	window.cm = CodeMirror(function(elt) {
+		myTextArea.parentNode.replaceChild(elt, myTextArea);
+	}, {
+		mode : "markdown",
+		lineNumbers : true,
+		lineWrapping : true,
+		value : myTextArea.value
+	});
 });
