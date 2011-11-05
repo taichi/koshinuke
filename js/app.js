@@ -432,6 +432,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		myTextArea.parentNode.replaceChild(elt, myTextArea);
 	}, {
 		mode : "markdown",
+		matchBrackets: true,
 		lineNumbers : true,
 		//lineWrapping : true, // true なら scroll の height を -18する。
 		value : myTextArea.value,
