@@ -433,7 +433,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	}, {
 		mode : "markdown",
 		lineNumbers : true,
-		lineWrapping : true,
+		//lineWrapping : true, // true なら scroll の height を -18する。
 		value : myTextArea.value,
 		onHighlightComplete : function(editor) {
 			var txt = editor.getValue();
