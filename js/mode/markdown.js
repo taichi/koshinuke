@@ -1,6 +1,3 @@
-goog.provide('CodeMirror.markdown');
-goog.require('CodeMirror');
-
 CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
 
   var htmlMode = CodeMirror.getMode(cmCfg, { name: 'xml', htmlMode: true });

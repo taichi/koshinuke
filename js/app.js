@@ -25,10 +25,9 @@ goog.require('goog.ui.TableSorter');
 goog.require('goog.ui.tree.TreeControl');
 goog.require('ZeroClipboard');
 goog.require('outliner.createOutline');
-goog.require('CodeMirror');
-goog.require('CodeMirror.markdown');
-goog.require('CodeMirror.xml');
 goog.require('Showdown');
+goog.require('CodeMirror');
+goog.require('CodeMirror.modes');
 
 goog.require('org.koshinuke.positioning.GravityPosition');
 goog.require('org.koshinuke.template');
@@ -432,7 +431,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		myTextArea.parentNode.replaceChild(elt, myTextArea);
 	}, {
 		mode : "markdown",
-		matchBrackets: true,
+		matchBrackets : true,
 		lineNumbers : true,
 		//lineWrapping : true, // true なら scroll の height を -18する。
 		value : myTextArea.value,
@@ -442,11 +441,27 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		}
 	});
 
+	var modes = goog.array.concat(CodeMirror.listModes(), 
+		goog.array.map(CodeMirror.listMIMEs(), function(v) {
+			return v.mime;
+		}));
+	goog.array.sort(modes);
 	function updatePreview(txt) {
 		var html = converter.makeHtml(txt);
-		var el = goog.dom.getElement('editor-area-preview');
-		el.innerHTML = html;
-		setEditorSize();
+		var prev = goog.dom.getElement('editor-area-preview');
+		prev.innerHTML = html;
+		goog.array.forEach(goog.dom.query("code", prev), function(el) {
+			var ary = goog.dom.classes.get(el);
+			if(ary && 0 < ary.length) {
+				var found = goog.array.find(ary, function(v) {
+					return -1 < goog.array.binarySearch(modes, v);
+				});
+				if(found) {
+					goog.dom.classes.set(el.parentNode, "cm-s-default");
+					CodeMirror.runMode(el.innerHTML, found, el.parentNode);
+				}
+			}
+		});
 	}
 
 	function setEditorSize() {
