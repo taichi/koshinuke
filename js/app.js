@@ -433,7 +433,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		mode : "markdown",
 		matchBrackets : true,
 		lineNumbers : true,
-		//lineWrapping : true, // true なら scroll の height を -18する。
+		//lineWrapping : true,
 		value : myTextArea.value,
 		onHighlightComplete : function(editor) {
 			var txt = editor.getValue();
@@ -441,10 +441,9 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		}
 	});
 
-	var modes = goog.array.concat(CodeMirror.listModes(), 
-		goog.array.map(CodeMirror.listMIMEs(), function(v) {
-			return v.mime;
-		}));
+	var modes = goog.array.concat(CodeMirror.listModes(), goog.array.map(CodeMirror.listMIMEs(), function(v) {
+		return v.mime;
+	}));
 	goog.array.sort(modes);
 	function updatePreview(txt) {
 		var html = converter.makeHtml(txt);
@@ -464,6 +463,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		});
 	}
 
+	var scrollHeight = goog.style.getScrollbarWidth();
 	function setEditorSize() {
 		var editor_main = goog.dom.getElement('editor-main');
 		var size = goog.style.getSize(editor_main);
@@ -472,7 +472,8 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		var scroll = goog.dom.query(".CodeMirror-scroll")[0];
 		if(scroll) {
 			var s = goog.style.getSize(input);
-			goog.style.setHeight(scroll, s.height);
+			var sd = cm.getOption('lineWrapping') ? scrollHeight : 0;
+			goog.style.setHeight(scroll, s.height - sd);
 		}
 		var prev = goog.dom.getElement('editor-area-preview');
 		prev.style.cssText = "max-width: " + (size.width * 0.5) + "px";
