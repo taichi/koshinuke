@@ -468,15 +468,23 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		var editor_main = goog.dom.getElement('editor-main');
 		var size = goog.style.getSize(editor_main);
 		var input = goog.dom.getElement('editor-area-input');
-		input.style.cssText = "max-width: " + (size.width * 0.49) + "px";
+		var imw = {
+			"max-width" : (size.width * 0.49) + "px"
+		};
+		goog.style.setStyle(input, imw);
+		goog.style.setStyle(goog.dom.getElement('editor-tools-ref-wrapper'), imw);
+
 		var scroll = goog.dom.query(".CodeMirror-scroll")[0];
 		if(scroll) {
 			var s = goog.style.getSize(input);
 			var sd = cm.getOption('lineWrapping') ? scrollHeight : 0;
 			goog.style.setHeight(scroll, s.height - sd);
 		}
-		var prev = goog.dom.getElement('editor-area-preview');
-		prev.style.cssText = "max-width: " + (size.width * 0.5) + "px";
+		var pmw = {
+			"max-width" : (size.width * 0.5) + "px"
+		};
+		goog.style.setStyle(goog.dom.getElement('editor-area-preview'), pmw);
+		goog.style.setStyle(goog.dom.getElement('editor-tools-preview'), pmw);
 	}
 
 	updatePreview(myTextArea.value);
