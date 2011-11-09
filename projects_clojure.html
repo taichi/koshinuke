@@ -895,10 +895,10 @@ __    _          _       _   _       _
 					</ul>
 				</div>
 				<div class="editor-tools">
-					<div id="editor-tools-ref-wrapper">
-						<div id="editor-tools-refs" class="refs toolbox">
-							<ul>
-								<li for="blockElements" class="active">
+					<div id="editor-tools-refs" class="refs toolbox">
+						<div class="refs-nav">
+							<ul class="refs-parent">
+								<li class="active">
 									<a href="#">Block Elements</a>
 								</li>
 								<li for="inlineElements">
@@ -908,7 +908,7 @@ __    _          _       _   _       _
 									<a href="#">Miscellaneous</a>
 								</li>
 							</ul>
-							<ul id="blockElements">
+							<ul class="refs-kids">
 								<li>
 									<a href="#">Paragraphs &amp; Breaks</a>
 								</li>
@@ -928,7 +928,9 @@ __    _          _       _   _       _
 									<a href="#">Horizontal Rules</a>
 								</li>
 							</ul>
-							<div id="help-description">
+						</div>
+						<div class="refs-content">
+							<div id="help-content">
 								<p>
 									To create a paragraph, simply create a block of text that is not separated by one or more blank lines. Blocks of text separated by one or more blank lines will be parsed as paragraphs.
 								</p>
@@ -939,28 +941,28 @@ __    _          _       _   _       _
 						</div>
 					</div>
 					<div id="editor-tools-preview" class="preview toolbox">
-						<div id="editor-tools-preview-src" class="prevbox">
-							<div class="desc">
-								Markdown
+						<div class="headers">
+							<div class="head begin">
+								<span>Markdown</span>
 							</div>
-							<pre>
+							<div class="head">
+								<span>Output</span>
+							</div>
+						</div>
+						<div class="codes">
+							<div class="code begin">
+								<pre>
 A First Level Header
 ====================
 A Second Level Header
 ---------------------
-### Header 3
-</pre>
-						</div>
-						<div id="editor-tools-preview-html" class="middle prevbox">
-							<div class="desc">
-								HTML
-							</div>
-						</div>
-						<div id="editor-tools-preview-view" class="prevbox">
-							<div class="desc">
-								Output
-							</div>
-						</div>
+### Header 3</pre>
+</div>							<div class="code">
+								<pre>
+&lt;h1&gt;A First Level Header&lt;/h1&gt;
+&lt;h2&gt;A Second Level Header&lt;/h2&gt;
+&lt;h3&gt;Header 3&lt;/h3&gt;</pre>
+</div>						</div>
 					</div>
 				</div>
 				<div id="editor-main" class="editor-main">

@@ -4,6 +4,7 @@ goog.require('goog.array');
 goog.require('goog.dom');
 goog.require('goog.dom.classes');
 goog.require('goog.dom.query');
+goog.require('goog.dom.ViewportSizeMonitor');
 goog.require('goog.events');
 goog.require('goog.graphics');
 goog.require('goog.graphics.Font');
@@ -463,32 +464,30 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		});
 	}
 
-	var scrollHeight = goog.style.getScrollbarWidth();
-	function setEditorSize() {
-		var editor_main = goog.dom.getElement('editor-main');
-		var size = goog.style.getSize(editor_main);
-		var input = goog.dom.getElement('editor-area-input');
-		var imw = {
-			"max-width" : (size.width * 0.49) + "px"
-		};
-		goog.style.setStyle(input, imw);
-		goog.style.setStyle(goog.dom.getElement('editor-tools-ref-wrapper'), imw);
-
+	var input = goog.dom.getElement('editor-area-input');
+	var vsm = goog.dom.ViewportSizeMonitor.getInstanceForWindow();
+	function setEditorHeight() {
 		var scroll = goog.dom.query(".CodeMirror-scroll")[0];
 		if(scroll) {
-			var s = goog.style.getSize(input);
-			var sd = cm.getOption('lineWrapping') ? scrollHeight : 0;
-			goog.style.setHeight(scroll, s.height - sd);
+			var pos = goog.style.getClientPosition(input);
+			var vs = vsm.getSize();
+			var h = vs.height;
+			if(0 < pos.y) {
+				h -= pos.y;
+			} else {
+				h += Math.abs(pos.y);
+			}
+			var el = goog.dom.query(".editor-menu")[0];
+			var size = goog.style.getSize(el);
+			h = h - size.height - 20;
+			goog.style.setHeight(scroll, h);
+			goog.style.setHeight(goog.dom.getElement('editor-area-preview'), h - 6);
+			cm.refresh();
 		}
-		var pmw = {
-			"max-width" : (size.width * 0.5) + "px"
-		};
-		goog.style.setStyle(goog.dom.getElement('editor-area-preview'), pmw);
-		goog.style.setStyle(goog.dom.getElement('editor-tools-preview'), pmw);
 	}
 
 	updatePreview(myTextArea.value);
-	setEditorSize();
-
-	goog.events.listen(window, goog.events.EventType.RESIZE, setEditorSize);
+	setEditorHeight();
+	goog.events.listen(window, goog.events.EventType.SCROLL, setEditorHeight);
+	goog.events.listen(vsm, goog.events.EventType.RESIZE, setEditorHeight);
 });
