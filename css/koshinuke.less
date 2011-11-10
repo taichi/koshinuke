@@ -101,7 +101,6 @@
 				margin-right: 5px;
 			}
 			.editor-area-preview {
-//				max-width: 50%;
 				border: 1px solid #DDD;
 				overflow: auto;
 				padding : 3px;
@@ -115,6 +114,10 @@
 		}
 		
 		.editor-tools {
+			display: none;
+			&.show {
+				display: block;
+			}
 			.clearfix;
 			background-color: @white;
 			border-bottom: 1px solid #DDD;
@@ -125,31 +128,30 @@
 				#radius > .around(3px);
 			}
 			.refs {
-				width: 49%;
+				max-width: 50%;
 				float: left;
 				margin-right: 5px;
 				background-color: whitesmoke;
 				.refs-nav {
-					width: 50%;
+					max-width: 43%;
 					float: left;
+					height: 100%;
 				}
 				.refs-content {
-					width: 49.9%;
+					max-width: 57%;
 					float: left;
+					padding: 0.5em 0.3em;
 				}
 				ul {
 					overflow: hidden;
-					width: 49%;
 					float: left;
 					list-style: none;
 					margin: 0;
-					border-right: 1px solid #DDD;
-					padding: 0.5em 0;
+					padding: 0.5em 0.3em;
 					li {
 						&.active {
 							border: 1px solid #DDD;
 							background-color: @white;
-							border-style: solid none solid none;
 							.box-shadow(0 1px 2px rgba(0,0,0,.2));
 							#radius > .around(3px);
 							a {
@@ -164,6 +166,7 @@
 							display: block;
 							padding: 0.2em 1em;
 							font-weight: bold;
+							font-size: smaller;
 							border: 1px solid transparent;
 							border-style: solid none solid none;
 							text-decoration: none;
@@ -178,11 +181,13 @@
 					}
 				}
 				#help-content {
-					width: 100%;
+					a,p,span {
+						font-size: smaller;
+					}
 				}
 			}
 			.preview {
-				width: 49.9%;
+				width: 49%;
 				.begin {
 					border-right: 1px solid #DDD;
 				}

@@ -878,8 +878,8 @@ __    _          _       _   _       _
 					<input type="text" value="Page Title" class="editor_title"/>
 					<ul>
 						<li>
-							<button class="btn">
-								Help
+							<button id="editor-btn-help" class="btn">
+								Show Help
 							</button>
 						</li>
 						<li>
@@ -894,7 +894,7 @@ __    _          _       _   _       _
 						</li>
 					</ul>
 				</div>
-				<div class="editor-tools">
+				<div id="editor-tools" class="editor-tools">
 					<div id="editor-tools-refs" class="refs toolbox">
 						<div class="refs-nav">
 							<ul class="refs-parent">
@@ -909,10 +909,10 @@ __    _          _       _   _       _
 								</li>
 							</ul>
 							<ul class="refs-kids">
-								<li>
+								<li class="active">
 									<a href="#">Paragraphs &amp; Breaks</a>
 								</li>
-								<li class="active">
+								<li>
 									<a href="#" for="md-headers">Headers</a>
 								</li>
 								<li>

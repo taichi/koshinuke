@@ -490,4 +490,14 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	setEditorHeight();
 	goog.events.listen(window, goog.events.EventType.SCROLL, setEditorHeight);
 	goog.events.listen(vsm, goog.events.EventType.RESIZE, setEditorHeight);
+
+	goog.events.listen(goog.dom.getElement('editor-btn-help'), goog.events.EventType.CLICK, function(event) {
+		var el = event.target;
+		if(goog.dom.classes.toggle(goog.dom.getElement('editor-tools'), 'show')) {
+			goog.dom.setTextContent(el, "Hide Help");
+		} else {
+			goog.dom.setTextContent(el, "Show Help");
+		}
+		setEditorHeight();
+	});
 });
