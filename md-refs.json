@@ -1,0 +1,81 @@
+{
+	"markup": "Markdown",
+	"parents": [
+		{
+			"label": "Block Elements",
+			"kids": [
+				{
+					"label": "Paragraphs &amp; Line Breaks",
+					"contents": "A paragraph is simply one or more consecutive lines of text, separated by one or more blank lines. (A blank line is any line that looks like a blank line -- a line containing nothing but spaces or tabs is considered blank.) Normal paragraphs should not be indented with spaces or tabs.",
+					"source": "Now is the time for all good men to come to the aid of their country. This is just a regular paragraph.\n\nThe quick brown fox jumped over the lazy dog's back.\n",
+					"output": "&lt;p&gt;Now is the time for all good men to come to the aid of their country. This is just a regular paragraph.&lt;/p&gt;\n&lt;p&gt;The quick brown fox jumped over the lazy dog's back.&lt;/p&gt;"
+				},{
+					"label": "Headers",
+					"contents": "Markdown offers two styles of headers: Setext and atx. Setext-style headers for <h1> and <h2> are created by \"underlining\" with equal signs (=) and hyphens (-), respectively. To create an atx-style header, you put 1-6 hash marks (#) at the beginning of the line -- the number of hashes equals the resulting HTML header level.",
+					"source": "A First Level Header\n====================\n\nA Second Level Header\n---------------------\n\n### Header 3\n",
+					"output": "&lt;h1&gt;A First Level Header&lt;/h1&gt;\n&lt;h2&gt;A Second Level Header&lt;/h2&gt;\n&lt;h3&gt;Header 3&lt;/h3&gt;\n"
+				},{
+					"label": "Blockquotes",
+					"contents": "Blockquotes_contents",
+					"source": "source_contents",
+					"output": "output_contents"
+				},{
+					"label": "Lists",
+					"contents": "Lists_contents",
+					"source": "source_contents",
+					"output": "output_contents"
+				},{
+					"label": "Code Blocks",
+					"contents": "Code Blocks_contents",
+					"source": "source_contents",
+					"output": "output_contents"
+				},{
+					"label": "Horizontal Rules",
+					"contents": "Horizontal Rules_contents",
+					"source": "source_contents",
+					"output": "output_contents"
+				}
+			]
+		},{
+			"label": "Inline Elements",
+			"kids": [
+				{
+					"label": "Links",
+					"contents": "Links_contents",
+					"source": "source_contents",
+					"output": "output_contents"
+				},{
+					"label": "Emphasis",
+					"contents": "Emphasis_contents",
+					"source": "source_contents",
+					"output": "output_contents"
+				},{
+					"label": "Code",
+					"contents": "Code_contents",
+					"source": "source_contents",
+					"output": "output_contents"
+				},{
+					"label": "Images",
+					"contents": "Images_contents",
+					"source": "source_contents",
+					"output": "output_contents"
+				}
+			]
+		},{
+			"label": "Miscellaneous",
+			"kids": [
+				{
+					"label": "Backslash Escapes",
+					"contents": "Backslash Escapes_contents",
+					"source": "source_contents",
+					"output": "output_contents"
+				},{
+					"label": "Automatic Links",
+					"contents": "Automatic Links_contents",
+					"source": "source_contents",
+					"output": "output_contents"
+				}
+			]
+		}
+	]
+}

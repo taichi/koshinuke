@@ -500,4 +500,46 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		}
 		setEditorHeight();
 	});
+
+	goog.events.listen(goog.dom.getElement('refs-nav'), goog.events.EventType.CLICK, function(event) {
+		var target = event.target;
+		if(target && target.tagName.toLowerCase() == 'a') {
+			var active = target.parentNode;
+			var ul = active.parentNode;
+			function activate(set, current) {
+				goog.array.forEach(set, function(a, i) {
+					if(current === a || current === i) {
+						goog.dom.classes.add(a, "active");
+					} else {
+						goog.dom.classes.remove(a, "active");
+					}
+				});
+			}
+			
+			function setRef(el) {
+				var cont = el["contents"];
+				if(cont) {
+					var helpEl = goog.dom.getElement('help-content');
+					helpEl.innerHTML = cont;
+				}
+			}
+
+			activate(goog.dom.getChildren(ul), active);
+
+			if(goog.dom.classes.has(ul, "refs-parent")) {
+				var targetUL = goog.dom.getElement(target.getAttribute('for'));
+				if(targetUL) {
+					activate(goog.dom.query(".refs-kids"), targetUL);
+					var kids = goog.dom.getChildren(targetUL);
+					activate(kids, 0);
+					if(goog.isArrayLike(kids) && 0 < kids.length) {
+						setRef(goog.dom.getFirstElementChild(kids[0]));
+					}
+				}
+			}
+			if(goog.dom.classes.has(ul, "refs-kids")) {
+				setRef(target);
+			}
+		}
+	});
 });
