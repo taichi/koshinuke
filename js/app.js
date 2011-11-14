@@ -31,8 +31,67 @@ goog.require('CodeMirror');
 goog.require('CodeMirror.modes');
 
 goog.require('org.koshinuke.positioning.GravityPosition');
-goog.require('org.koshinuke.template');
+goog.require('org.koshinuke.template.breadcrumb');
+goog.require('org.koshinuke.template.helpcontents');
 goog.require('org.koshinuke.ui.Breadcrumb');
+
+function renderHelpContents() {
+	renderRemoteData('md-refs.json', function(e) {
+		var idg = goog.ui.IdGenerator.instance;
+
+		function parents(data, ctx) {
+			goog.array.forEach(data, function(a) {
+				var p = {
+					f : idg.getNextUniqueId(),
+					label : a["label"]
+				};
+				ctx.parents.push(p);
+				kids(p.f, a["kids"], ctx);
+			});
+		}
+
+		function kids(pid, data, ctx) {
+			var k = {
+				id : pid,
+				labels : []
+			};
+			goog.array.forEach(data, function(a) {
+				var nid = idg.getNextUniqueId();
+				
+				var l = {
+					cid : "contents_" + nid,
+					pid : "preview_" + nid,
+					label : a["label"]
+				};
+				k.labels.push(l);
+				var c = {
+					id : l.cid,
+					contents: a["contents"]
+				};
+				ctx.contents.push(c);
+				var p = {
+					id : l.pid,
+					source : a["source"],
+					output : a["output"]
+				};
+				ctx.previewes.push(p);
+			});
+			ctx.kids.push(k);
+		}
+
+		var data = goog.json.parse(e.target.getResponseText());
+		var context = {
+			markup : data["markup"],
+			parents : [],
+			kids : [],
+			contents : [],
+			previewes : []
+		};
+		// convert
+		parents(data.parents, context);
+		// template
+	});
+}
 
 function renderOutlineTree() {
 	function text(node) {
@@ -490,10 +549,12 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	setEditorHeight();
 	goog.events.listen(window, goog.events.EventType.SCROLL, setEditorHeight);
 	goog.events.listen(vsm, goog.events.EventType.RESIZE, setEditorHeight);
+	
+	renderHelpContents();
 
 	goog.events.listen(goog.dom.getElement('editor-btn-help'), goog.events.EventType.CLICK, function(event) {
 		var el = event.target;
-		if(goog.dom.classes.toggle(goog.dom.getElement('editor-tools'), 'show')) {
+		if(goog.dom.classes.toggle(goog.dom.getElement('editor-tools'), 'active')) {
 			goog.dom.setTextContent(el, "Hide Help");
 		} else {
 			goog.dom.setTextContent(el, "Show Help");
@@ -501,7 +562,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		setEditorHeight();
 	});
 
-	goog.events.listen(goog.dom.getElement('refs-nav'), goog.events.EventType.CLICK, function(event) {
+	goog.events.listen(goog.dom.getElement('editor-tools'), goog.events.EventType.CLICK, function(event) {
 		var target = event.target;
 		if(target && target.tagName.toLowerCase() == 'a') {
 			var active = target.parentNode;
@@ -515,12 +576,11 @@ goog.exportSymbol('org.koshinuke.main', function() {
 					}
 				});
 			}
-			
-			function setRef(el) {
-				var cont = el["contents"];
-				if(cont) {
-					var helpEl = goog.dom.getElement('help-content');
-					helpEl.innerHTML = cont;
+
+			function setRef(target) {
+				var targetDIV = goog.dom.getElement(target.getAttribute('cid'));
+				if(targetDIV) {
+					activate(goog.dom.query(".refs-content div"), targetDIV);
 				}
 			}
 

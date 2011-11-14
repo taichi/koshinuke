@@ -115,7 +115,7 @@
 		
 		.editor-tools {
 			display: none;
-			&.show {
+			&.active {
 				display: block;
 			}
 			.clearfix;
@@ -134,21 +134,27 @@
 				margin-right: 5px;
 				background-color: whitesmoke;
 				.refs-nav {
-					max-width: 43%;
+					width: 43%;
 					float: left;
 					height: 100%;
 				}
 				.refs-content {
-					max-width: 57%;
+					div {
+						display: none;
+						&.active {
+							display: block;
+						}
+					}
+					max-width: 56%;
 					float: left;
 					padding: 0.5em 0.3em;
+					a,p,span,div {
+						font-size: smaller;
+					}
 				}
 				.refs-parent, .refs-kids {
-					display: none;
-					&.active {
-						display: block;
-					}
-					
+					display: block;
+				
 					overflow: hidden;
 					float: left;
 					list-style: none;
@@ -179,9 +185,10 @@
 						}
 					}
 				}
-				#help-content {
-					a,p,span {
-						font-size: smaller;
+				.refs-kids {
+					display: none;
+					&.active {
+						display: block;
 					}
 				}
 			}
@@ -205,6 +212,10 @@
 					border-bottom: 1px solid #DDD;
 				}
 				.codes {
+					display: none;
+					&.active {
+						display: block;
+					}
 					.clearfix;
 					background-color: whitesmoke;
 					.code {

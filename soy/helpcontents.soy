@@ -1,0 +1,55 @@
+{namespace org.koshinuke.template.helpcontents}
+
+/**
+ * make help contents
+ * @param markup 
+ * @param parents
+ * @param kids
+ * @param contents
+ * @param previewes
+ */
+{template .tmpl}
+<div class="refs toolbox">
+	<div class="refs-nav">
+		<ul class="refs-parent">
+			{foreach $p in $parents}
+				<li class="{if isFirst($p)}active{/if}"><a href="#" for="{$p.f |noAutoescape}">{$p.label}</a></li>
+			{/foreach}
+		</ul>
+		{foreach $k in $kids}
+		<ul id="{$k.id}" class="refs-kids {if isFirst($k)}active{/if}">
+			{foreach $l in $k.labels}
+			<li class="{if isFirst($l)}active{/if}">
+				<a href="#" cid="{$l.cid |noAutoescape}" pid="{$l.pid |noAutoescape}">{$l.label}</a>
+			</li>
+			{/foreach}
+		</ul>
+		{/foreach}
+	</div>
+	<div class="refs-content">
+		{foreach $c in $contents}
+			<div id="{$c.id |noAutoescape}" class="{if isFirst($c)}active{/if}">{$c.contents |noAutoescape}</div>
+		{/foreach}
+	</div>
+</div>
+<div class="preview toolbox">
+	<div class="headers">
+		<div class="head begin">
+			<span>{$markup}</span>
+		</div>
+		<div class="head">
+			<span>Output</span>
+		</div>
+	</div>
+	{foreach $p in $previewes}
+	<div id="{$p.id |noAutoescape}" class="codes {if isFirst($p)}active{/if}">
+		<div class="code begin">
+			<pre>{$p.source}</pre>
+		</div>
+		<div class="code">
+			<pre>{$p.output}</pre>
+		</div>
+	</div>
+	{/foreach}
+</div>
+{/template}

@@ -895,9 +895,9 @@ __    _          _       _   _       _
 					</ul>
 				</div>
 				<div id="editor-tools" class="editor-tools">
-					<div id="editor-tools-refs" class="refs toolbox">
-						<div id="refs-nav" class="refs-nav">
-							<ul class="refs-parent active">
+					<div class="refs toolbox">
+						<div class="refs-nav">
+							<ul class="refs-parent">
 								<li class="active">
 									<a href="#" for=":0">Block Elements</a>
 								</li>
@@ -905,27 +905,27 @@ __    _          _       _   _       _
 									<a href="#" for=":1">Inline Elements</a>
 								</li>
 								<li>
-									<a href="#">Miscellaneous</a>
+									<a href="#" for=":2">Miscellaneous</a>
 								</li>
 							</ul>
 							<ul class="refs-kids active" id=":0">
 								<li>
-									<a href="#">Paragraphs &amp; Breaks</a>
+									<a href="#" cid=":4">Paragraphs &amp; Breaks</a>
 								</li>
 								<li class="active">
-									<a href="#">Headers</a>
+									<a href="#" cid=":5">Headers</a>
 								</li>
 								<li>
-									<a href="#">Blockquotes</a>
+									<a href="#" cid=":66">Blockquotes</a>
 								</li>
 								<li>
-									<a href="#">Lists</a>
+									<a href="#" cid=":7">Lists</a>
 								</li>
 								<li>
-									<a href="#">Code Blocks</a>
+									<a href="#" cid=":8">Code Blocks</a>
 								</li>
 								<li>
-									<a href="#">Horizontal Rules</a>
+									<a href="#" cid=":9">Horizontal Rules</a>
 								</li>
 							</ul>
 							<ul class="refs-kids" id=":1">
@@ -947,7 +947,7 @@ __    _          _       _   _       _
 							</ul>
 						</div>
 						<div class="refs-content">
-							<div id="help-content">
+							<div id=":4" class="active">
 								<p>
 									To create a paragraph, simply create a block of text that is not separated by one or more blank lines. Blocks of text separated by one or more blank lines will be parsed as paragraphs.
 								</p>
@@ -955,31 +955,42 @@ __    _          _       _   _       _
 									If you want to create a line break, end a line with two or more spaces, then hit Return/Enter.
 								</p>
 							</div>
+							<div id=":5">
+								<p>
+									If you want to create a line break, end a line with two or more spaces, then hit Return/Enter.
+								</p>
+							</div>
+							<div id=":66">
+								<p>
+									To create a paragraph, simply create a block of text that is not separated by one or more blank lines. Blocks of text separated by one or more blank lines will be parsed as paragraphs.
+								</p>
+							</div>
 						</div>
 					</div>
-					<div id="editor-tools-preview" class="preview toolbox">
+					<div class="preview toolbox">
 						<div class="headers">
 							<div class="head begin">
-								<span id="syntax-name">Markdown</span>
+								<span>Markdown</span>
 							</div>
 							<div class="head">
 								<span>Output</span>
 							</div>
 						</div>
-						<div class="codes">
+						<div class="codes active">
 							<div class="code begin">
-								<pre id="editor-tools-source">
+								<pre>
 A First Level Header
 ====================
 A Second Level Header
 ---------------------
 ### Header 3</pre>
-</div>							<div class="code">
-								<pre id="editor-tools-output">
-&lt;h1&gt;A First Level Header&lt;/h1&gt;
+							</div>
+							<div class="code">
+								<pre>&lt;h1&gt;A First Level Header&lt;/h1&gt;
 &lt;h2&gt;A Second Level Header&lt;/h2&gt;
 &lt;h3&gt;Header 3&lt;/h3&gt;</pre>
-</div>						</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div id="editor-main" class="editor-main">
