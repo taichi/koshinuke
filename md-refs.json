@@ -5,35 +5,35 @@
 			"label": "Block Elements",
 			"kids": [
 				{
-					"label": "Paragraphs &amp; Line Breaks",
+					"label": "Paragraphs & Line Breaks",
 					"contents": "A paragraph is simply one or more consecutive lines of text, separated by one or more blank lines. (A blank line is any line that looks like a blank line -- a line containing nothing but spaces or tabs is considered blank.) Normal paragraphs should not be indented with spaces or tabs.",
 					"source": "Now is the time for all good men to come to the aid of their country. This is just a regular paragraph.\n\nThe quick brown fox jumped over the lazy dog's back.\n",
-					"output": "&lt;p&gt;Now is the time for all good men to come to the aid of their country. This is just a regular paragraph.&lt;/p&gt;\n&lt;p&gt;The quick brown fox jumped over the lazy dog's back.&lt;/p&gt;"
+					"output": "<p>Now is the time for all good men to come to the aid of their country. This is just a regular paragraph.</p>\n<p>The quick brown fox jumped over the lazy dog's back.</p>"
 				},{
 					"label": "Headers",
 					"contents": "Markdown offers two styles of headers: Setext and atx. Setext-style headers for <h1> and <h2> are created by \"underlining\" with equal signs (=) and hyphens (-), respectively. To create an atx-style header, you put 1-6 hash marks (#) at the beginning of the line -- the number of hashes equals the resulting HTML header level.",
 					"source": "A First Level Header\n====================\n\nA Second Level Header\n---------------------\n\n### Header 3\n",
-					"output": "&lt;h1&gt;A First Level Header&lt;/h1&gt;\n&lt;h2&gt;A Second Level Header&lt;/h2&gt;\n&lt;h3&gt;Header 3&lt;/h3&gt;\n"
+					"output": "<h1>A First Level Header</h1>\n<h2>A Second Level Header</h2>\n<h3>Header 3</h3>\n"
 				},{
 					"label": "Blockquotes",
 					"contents": "Blockquotes_contents",
-					"source": "source_contents",
-					"output": "output_contents"
+					"source": "Blockquotes_source_contents",
+					"output": "Blockquotes_output_contents"
 				},{
 					"label": "Lists",
 					"contents": "Lists_contents",
-					"source": "source_contents",
-					"output": "output_contents"
+					"source": "Lists_source_contents",
+					"output": "Lists_output_contents"
 				},{
 					"label": "Code Blocks",
 					"contents": "Code Blocks_contents",
-					"source": "source_contents",
-					"output": "output_contents"
+					"source": "Code Blocks_source_contents",
+					"output": "Code Blocks_output_contents"
 				},{
 					"label": "Horizontal Rules",
 					"contents": "Horizontal Rules_contents",
-					"source": "source_contents",
-					"output": "output_contents"
+					"source": "Horizontal Rules_source_contents",
+					"output": "Horizontal Rules_output_contents"
 				}
 			]
 		},{
@@ -42,23 +42,23 @@
 				{
 					"label": "Links",
 					"contents": "Links_contents",
-					"source": "source_contents",
-					"output": "output_contents"
+					"source": "Links_source_contents",
+					"output": "Links_output_contents"
 				},{
 					"label": "Emphasis",
 					"contents": "Emphasis_contents",
-					"source": "source_contents",
-					"output": "output_contents"
+					"source": "Emphasis_source_contents",
+					"output": "Emphasis_output_contents"
 				},{
 					"label": "Code",
 					"contents": "Code_contents",
-					"source": "source_contents",
-					"output": "output_contents"
+					"source": "Code_source_contents",
+					"output": "Code_output_contents"
 				},{
 					"label": "Images",
 					"contents": "Images_contents",
-					"source": "source_contents",
-					"output": "output_contents"
+					"source": "Images_source_contents",
+					"output": "Images_output_contents"
 				}
 			]
 		},{
@@ -67,13 +67,13 @@
 				{
 					"label": "Backslash Escapes",
 					"contents": "Backslash Escapes_contents",
-					"source": "source_contents",
-					"output": "output_contents"
+					"source": "Backslash Escapes_source_contents",
+					"output": "Backslash Escapes_output_contents"
 				},{
 					"label": "Automatic Links",
 					"contents": "Automatic Links_contents",
-					"source": "source_contents",
-					"output": "output_contents"
+					"source": "Automatic Links_source_contents",
+					"output": "Automatic Links_output_contents"
 				}
 			]
 		}

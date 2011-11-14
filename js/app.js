@@ -90,6 +90,8 @@ function renderHelpContents() {
 		// convert
 		parents(data.parents, context);
 		// template
+		var el = goog.dom.getElement('editor-tools');
+		el.innerHTML = org.koshinuke.template.helpcontents.tmpl(context);
 	});
 }
 
@@ -578,9 +580,13 @@ goog.exportSymbol('org.koshinuke.main', function() {
 			}
 
 			function setRef(target) {
-				var targetDIV = goog.dom.getElement(target.getAttribute('cid'));
-				if(targetDIV) {
-					activate(goog.dom.query(".refs-content div"), targetDIV);
+				var contents = goog.dom.getElement(target.getAttribute('cid'));
+				if(contents) {
+					activate(goog.dom.query(".refs-content div"), contents);
+				}
+				var previews = goog.dom.getElement(target.getAttribute('pid'));
+				if(previews) {
+					activate(goog.dom.query(".preview .codes"), previews);
 				}
 			}
 

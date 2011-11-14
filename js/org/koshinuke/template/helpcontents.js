@@ -35,14 +35,14 @@ org.koshinuke.template.helpcontents.tmpl = function(opt_data, opt_sb) {
   var cListLen43 = cList43.length;
   for (var cIndex43 = 0; cIndex43 < cListLen43; cIndex43++) {
     var cData43 = cList43[cIndex43];
-    output.append('<div id="', cData43.id, '" class="', (cIndex43 == 0) ? 'active' : '', '">', cData43.contents, '</div>');
+    output.append('<div id="', cData43.id, '" class="', (cIndex43 == 0) ? 'active' : '', '">', soy.$$escapeHtml(cData43.contents), '</div>');
   }
   output.append('</div></div><div class="preview toolbox"><div class="headers"><div class="head begin"><span>', soy.$$escapeHtml(opt_data.markup), '</span></div><div class="head"><span>Output</span></div></div>');
-  var pList59 = opt_data.previewes;
-  var pListLen59 = pList59.length;
-  for (var pIndex59 = 0; pIndex59 < pListLen59; pIndex59++) {
-    var pData59 = pList59[pIndex59];
-    output.append('<div id="', pData59.id, '" class="codes ', (pIndex59 == 0) ? 'active' : '', '"><div class="code begin"><pre>', soy.$$escapeHtml(pData59.source), '</pre></div><div class="code"><pre>', soy.$$escapeHtml(pData59.output), '</pre></div></div>');
+  var pList58 = opt_data.previewes;
+  var pListLen58 = pList58.length;
+  for (var pIndex58 = 0; pIndex58 < pListLen58; pIndex58++) {
+    var pData58 = pList58[pIndex58];
+    output.append('<div id="', pData58.id, '" class="codes ', (pIndex58 == 0) ? 'active' : '', '"><div class="code begin"><pre>', soy.$$escapeHtml(pData58.source), '</pre></div><div class="code"><pre>', soy.$$escapeHtml(pData58.output), '</pre></div></div>');
   }
   output.append('</div>');
   return opt_sb ? '' : output.toString();

@@ -28,7 +28,7 @@
 	</div>
 	<div class="refs-content">
 		{foreach $c in $contents}
-			<div id="{$c.id |noAutoescape}" class="{if isFirst($c)}active{/if}">{$c.contents |noAutoescape}</div>
+			<div id="{$c.id |noAutoescape}" class="{if isFirst($c)}active{/if}">{$c.contents}</div>
 		{/foreach}
 	</div>
 </div>
