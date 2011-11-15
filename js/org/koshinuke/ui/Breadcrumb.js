@@ -17,7 +17,7 @@ org.koshinuke.ui.Breadcrumb = function(el) {
  * @private
  */
 org.koshinuke.ui.Breadcrumb.prototype.li_ = function(args) {
-	return goog.soy.renderAsElement(org.koshinuke.template.breadcrumb_li, {
+	return goog.soy.renderAsElement(org.koshinuke.template.breadcrumb.tmpl, {
 		href : "#", // TODO make url
 		view : args
 	});

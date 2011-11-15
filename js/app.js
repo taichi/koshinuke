@@ -41,12 +41,12 @@ function renderHelpContents() {
 
 		function parents(data, ctx) {
 			goog.array.forEach(data, function(a) {
-				var p = {
-					f : idg.getNextUniqueId(),
+				var nid = idg.getNextUniqueId();
+				ctx.parents.push({
+					f : nid,
 					label : a["label"]
-				};
-				ctx.parents.push(p);
-				kids(p.f, a["kids"], ctx);
+				});
+				kids(nid, a["kids"], ctx);
 			});
 		}
 
@@ -57,24 +57,21 @@ function renderHelpContents() {
 			};
 			goog.array.forEach(data, function(a) {
 				var nid = idg.getNextUniqueId();
-				
 				var l = {
 					cid : "contents_" + nid,
 					pid : "preview_" + nid,
 					label : a["label"]
 				};
 				k.labels.push(l);
-				var c = {
+				ctx.contents.push({
 					id : l.cid,
-					contents: a["contents"]
-				};
-				ctx.contents.push(c);
-				var p = {
+					contents : a["contents"]
+				});
+				ctx.previewes.push({
 					id : l.pid,
 					source : a["source"],
 					output : a["output"]
-				};
-				ctx.previewes.push(p);
+				});
 			});
 			ctx.kids.push(k);
 		}
@@ -88,7 +85,7 @@ function renderHelpContents() {
 			previewes : []
 		};
 		// convert
-		parents(data.parents, context);
+		parents(data["parents"], context);
 		// template
 		var el = goog.dom.getElement('editor-tools');
 		el.innerHTML = org.koshinuke.template.helpcontents.tmpl(context);
@@ -487,6 +484,25 @@ goog.exportSymbol('org.koshinuke.main', function() {
 			console.log(selected.getText());
 		}
 	});
+	goog.events.listen(goog.dom.getElement('doc_edit'), goog.events.EventType.CLICK, function(e) {
+		showEditor();
+	});
+	function showEditor() {
+		var el = goog.dom.getElement('editor-outer');
+		if(el && goog.dom.classes.has(el, "active") == false) {
+			goog.dom.classes.add(el, "active");
+			// イマイチよくない
+			setEditorHeight();
+		}
+	}
+
+	function hideEditor() {
+		var el = goog.dom.getElement('editor-outer');
+		if(el && goog.dom.classes.has(el, "active")) {
+			goog.dom.classes.remove(el, "active");
+		}
+	}
+
 	var myTextArea = goog.dom.getElement('editor-textarea');
 	var converter = new Showdown.converter();
 	var cm = CodeMirror(function(elt) {
@@ -551,8 +567,15 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	setEditorHeight();
 	goog.events.listen(window, goog.events.EventType.SCROLL, setEditorHeight);
 	goog.events.listen(vsm, goog.events.EventType.RESIZE, setEditorHeight);
-	
+
 	renderHelpContents();
+
+	goog.array.forEach(["editor-btn-cancel", "editor-btn-save"], function(a) {
+		var el = goog.dom.getElement(a);
+		goog.events.listen(el, goog.events.EventType.CLICK, function(e) {
+			hideEditor();
+		});
+	});
 
 	goog.events.listen(goog.dom.getElement('editor-btn-help'), goog.events.EventType.CLICK, function(event) {
 		var el = event.target;

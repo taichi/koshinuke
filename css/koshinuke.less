@@ -72,6 +72,10 @@
 }
 
 #editor-outer {
+	display: none;
+	&.active {
+		display: block;
+	}
 	z-index: 2000;
 	position: absolute;
 	top: 45px;
@@ -127,12 +131,13 @@
 				border: 1px solid #DDD;
 				#radius > .around(3px);
 				margin-bottom: 5px;
+				background-color: whitesmoke;
 			}
 			.refs {
 				width: 50%;
+				min-height: 10em;
 				float: left;
 				margin-right: 5px;
-				background-color: whitesmoke;
 				.refs-nav {
 					width: 45%;
 					float: left;
@@ -199,11 +204,11 @@
 				}
 				.headers {
 					.clearfix;
+					background-color: white;
 					.head {
 						width: 49.9%;
 						float: left;
 						text-align: center;
-						
 						span {
 							font-weight: bold;
 							padding: 3px;
