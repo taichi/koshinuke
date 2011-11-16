@@ -484,7 +484,21 @@ goog.exportSymbol('org.koshinuke.main', function() {
 			console.log(selected.getText());
 		}
 	});
-	goog.events.listen(goog.dom.getElement('doc_edit'), goog.events.EventType.CLICK, function(e) {
+	goog.events.listen(goog.dom.getElement('doc-btn-history'), goog.events.EventType.CLICK, function(e) {
+		var btn = e.target;
+		var el = goog.dom.getElement('doc-history');
+		if(goog.dom.classes.has(el, "active")) {
+			goog.dom.classes.remove(el, "active");
+			goog.dom.setTextContent(btn, "Page History");
+			goog.dom.classes.add(goog.dom.getElement('doc-content'), 'active');
+		} else {
+			goog.dom.classes.add(el, "active");
+			goog.dom.setTextContent(btn, "Hide History");
+			goog.dom.classes.remove(goog.dom.getElement('doc-content'), 'active');
+		}
+	});
+
+	goog.events.listen(goog.dom.getElement('doc-btn-edit'), goog.events.EventType.CLICK, function(e) {
 		showEditor();
 	});
 	function showEditor() {

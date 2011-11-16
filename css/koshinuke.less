@@ -21,6 +21,13 @@
 		-moz-user-select: @select;
 }
 
+.active {
+	display: none;
+	&.active {
+		display: block;
+	}
+}
+
 @doc_button : #ffffff;
 @doc_side_list: #eaedf7;
 @doc_side_outline: #eaf4fc;
@@ -72,10 +79,7 @@
 }
 
 #editor-outer {
-	display: none;
-	&.active {
-		display: block;
-	}
+	.active;
 	z-index: 2000;
 	position: absolute;
 	top: 45px;
@@ -118,10 +122,7 @@
 		}
 		
 		.editor-tools {
-			display: none;
-			&.active {
-				display: block;
-			}
+			.active;
 			.clearfix;
 			background-color: @white;
 			border-bottom: 1px solid #DDD;
@@ -145,10 +146,7 @@
 				}
 				.refs-content {
 					div {
-						display: none;
-						&.active {
-							display: block;
-						}
+						.active;
 					}
 					max-width: 54%;
 					float: left;
@@ -191,10 +189,7 @@
 					}
 				}
 				.refs-kids {
-					display: none;
-					&.active {
-						display: block;
-					}
+					.active;
 				}
 			}
 			.preview {
@@ -217,10 +212,7 @@
 					border-bottom: 1px solid #DDD;
 				}
 				.codes {
-					display: none;
-					&.active {
-						display: block;
-					}
+					.active;
 					.clearfix;
 					background-color: whitesmoke;
 					.code {
@@ -368,11 +360,16 @@
 		}
 		.ulbuttons(@doc_button);
 	}
-	.doc_content {
+	.doc-content {
+		.active;
 		.clearfix;
 		padding: 5px;
 		#radius > .around();
 		background-color: @doc_main_bg;
+	}
+	.doc-history {
+		.active;
+		.clearfix;
 	}
 }
 

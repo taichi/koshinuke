@@ -742,23 +742,23 @@ __    _          _       _   _       _
 									</div>
 									<ul>
 										<li>
-											<button id="doc_history" class="btn">
+											<button id="doc-btn-history" class="btn">
 												Page History
 											</button>
 										</li>
 										<li>
-											<button id="doc_edit" class="btn">
+											<button id="doc-btn-edit" class="btn">
 												Edit Page
 											</button>
 										</li>
 										<li>
-											<button id="doc_new" class="btn">
+											<button id="doc-btn-new" class="btn">
 												New Page
 											</button>
 										</li>
 									</ul>
 								</div>
-								<div id="doc_content" class="doc_content">
+								<div id="doc-content" class="doc-content active">
 									<h2>はじめに</h2>
 									<h3>ドキュメントの読み方</h3>
 									<p>
@@ -786,6 +786,50 @@ __    _          _       _   _       _
 										チーム体制を確認するのです。
 									</p>
 								</div>
+								<div id="doc-history" class="doc-history">
+								<!-- jquery.bottom.js的な何かでロードする。 -->
+								<table class="gradient icon_table" summary="commit logs">
+									<thead>
+										<tr>
+											<th class="icon"></th>
+											<th class="auther">auther</th>
+											<th class="timestamp">timestamp</th>
+											<th class="commitmessage">message</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+											<td>taichi 1</td>
+											<td>2011-08-31 12:31:24</td>
+											<td>yah!</td>
+										</tr>
+										<tr>
+											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+											<td>taichi 2</td>
+											<td>2011-08-30 12:31:24</td>
+											<td>damn it!</td>
+										</tr>
+										<tr>
+											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+											<td>taichi 3</td>
+											<td>2011-08-29 12:31:24</td>
+											<td>lol!</td>
+										</tr>
+										<tr>
+											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+											<td>taichi 4</td>
+											<td>2011-08-28 12:31:24</td>
+											<td>help me!</td>
+										</tr>
+										<tr>
+											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+											<td>taichi 5</td>
+											<td>2011-08-27 12:31:24</td>
+											<td>fix bug!</td>
+										</tr>
+									</tbody>
+								</table>								</div>
 							</div>
 						</div><!-- <div id="doc_main_pane"> -->
 						<div id="doc_list_pane" style="display: none;">
