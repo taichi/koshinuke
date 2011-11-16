@@ -377,7 +377,7 @@
 	.user-select;
 	float: left;
 	background-color: @white;
-	margin: 7px 0px 0px 2px;
+	margin: 8px 0px 0px 2px;
 	position: absolute;
 }
 
@@ -391,7 +391,7 @@
 	min-width: 467px;
 	.filter {
 		float: left;
-		margin: 2px 2px 0 2px;
+		margin: 1px 2px;
 		label {
 			display: block;
 			#radius > .around(3px);
@@ -772,6 +772,13 @@
     div.goog-tab {
     position: relative; // For the dropdowns mostly
     top: 1px;
+    &.goog-tab-selected > a {
+      background-color: #fff;
+      padding: 0 14px;
+      border: 1px solid #ddd;
+      border-bottom: 0;
+      color: @gray;
+    }
     > a {
       margin-right: 2px;
       padding: 0 15px;
@@ -780,16 +787,8 @@
       
       &:hover {
         background-color: #eee;
-        border-bottom: 1px solid #ddd;
         text-decoration: none;
       }
-    }
-    &.goog-tab-selected > a {
-      background-color: #fff;
-      padding: 0 14px;
-      border: 1px solid #ddd;
-      border-bottom: 0;
-      color: @gray;
     }
   }
 	.dropdown.open {
