@@ -106,7 +106,7 @@ __    _          _       _   _       _
 					</div>
 				</div>
 				<div class="contents_projects">
-					<div id="git_contents">
+					<div id="git_contents"  class="project-content active">
 						<div class="topic">
 							<div class="repo-urls">
 								<div class="repo_name begin open">
@@ -179,7 +179,7 @@ __    _          _       _   _       _
 								</div>
 							</div><!-- <div class="tab-container"> -->
 							<div class="panes">
-								<div id="branch_pane">
+								<div id="branch_pane" class="tabpane active">
 									<div class="label_filter">
 										Filter
 									</div>
@@ -264,7 +264,7 @@ __    _          _       _   _       _
 										</tbody>
 									</table>
 								</div>
-								<div id="resource_pane" style="display: none;">
+								<div id="resource_pane" class="tabpane">
 									<table class="gradient icon_table" summary="repository viewing">
 										<thead>
 											<tr>
@@ -392,7 +392,7 @@ __    _          _       _   _       _
 										</tbody>
 									</table>
 								</div><!-- <div id="resource_pane"> -->
-								<div id="tags_pane" style="display: none;">
+								<div id="tags_pane" class="tabpane">
 									<table id="tags_table" class="gradient icon_table" summary="tags viewing">
 										<thead>
 											<tr>
@@ -428,7 +428,7 @@ __    _          _       _   _       _
 										</tbody>
 									</table>
 								</div><!-- <div id="tags_pane"> -->
-								<div id="0.0.3_pane" style="display: none;">
+								<div id="0.0.3_pane" class="tabpane">
 									<table class="gradient icon_table" summary="repository viewing">
 										<thead>
 											<tr>
@@ -472,7 +472,7 @@ __    _          _       _   _       _
 										</tbody>
 									</table>
 								</div><!-- <div id="0.0.3_pane"> -->
-								<div id="0.0.2_pane" style="display: none;">
+								<div id="0.0.2_pane" class="tabpane">
 									<table class="gradient icon_table" summary="repository viewing">
 										<thead>
 											<tr>
@@ -510,7 +510,7 @@ __    _          _       _   _       _
 										</tbody>
 									</table>
 								</div><!-- <div id="0.0.2_pane"> -->
-								<div id="0.0.1_pane" style="display: none;">
+								<div id="0.0.1_pane" class="tabpane">
 									<table class="gradient icon_table" summary="repository viewing">
 										<thead>
 											<tr>
@@ -536,7 +536,7 @@ __    _          _       _   _       _
 										</tbody>
 									</table>
 								</div><!-- <div id="0.0.1_pane"> -->
-								<div id="commitlog_pane" style="display: none;">
+								<div id="commitlog_pane" class="tabpane">
 									<!-- jquery.bottom.js的な何かでロードする。 -->
 									<table class="gradient" summary="commit logs">
 										<thead>
@@ -632,14 +632,14 @@ __    _          _       _   _       _
 										</tbody>
 									</table>
 								</div><!-- <div id="commitlog_pane"> -->
-								<div id="graph_pane" style="display: none;">
+								<div id="graph_pane" class="tabpane">
 									<div id="commitGraph"></div>
 								</div>
 							</div><!-- <div class="panes"> -->
 						</div>
 					</div><!-- <div id="git_contents"> -->
-					<div id="tt_contents" style="display: none;">
-						<div class="_topmenu">
+					<div id="tt_contents" class="project-content">
+						<div class="tt_topmenu">
 							<div id="tt_tab" class="goog-tab-bar goog-tabs">
 								<div class="goog-tab goog-tab-selected" for="tt_list_pane">
 									<a href="#">Lists</a>
@@ -652,7 +652,7 @@ __    _          _       _   _       _
 								</div>
 							</div>
 						</div>
-						<div id="tt_list_pane">
+						<div id="tt_list_pane" class="tabpane active">
 							<div class="tt_menu">
 								<div class="filters">
 									Filters
@@ -700,14 +700,14 @@ __    _          _       _   _       _
 								</tbody>
 							</table>
 						</div>
-						<div id="tt_history_pane" style="display: none;">
+						<div id="tt_history_pane" class="tabpane">
 							タスクの変更履歴的
 						</div>
-						<div id="tt_deps_graph_pane" style="display: none;">
+						<div id="tt_deps_graph_pane" class="tabpane">
 							タスクの依存関係グラフ
 						</div>
 					</div>
-					<div id="document_contents" style="display: none;">
+					<div id="document_contents" class="project-content">
 						<!-- http://www.quietwrite.com/ とか、http://substance.io/ みたいな感じにしたい。-->
 						<div class="doc_topmenu">
 							<div id="document_tab" class="goog-tab-bar goog-tabs">
@@ -722,7 +722,7 @@ __    _          _       _   _       _
 								</div>
 							</div>
 						</div>
-						<div id="doc_main_pane">
+						<div id="doc_main_pane" class="tabpane active">
 							<div class="doc_sidebar">
 								<div id="doc_sidebar_tab" class="goog-tab-bar">
 									<div class="goog-tab list active" for="doc_side_lists">
@@ -732,8 +732,8 @@ __    _          _       _   _       _
 										<a href="#">Outline</a>
 									</div>
 								</div>
-								<div id="doc_side_lists" class="doc_side_content doc_side_lists"></div>
-								<dl id="doc_side_outline" class="doc_side_content doc_side_outline" style="display: none;"></dl>
+								<div id="doc_side_lists" class="doc_side_content doc_side_lists tabpane"></div>
+								<dl id="doc_side_outline" class="doc_side_content doc_side_outline tabpane"></dl>
 							</div>
 							<div class="doc_main_area">
 								<div class="content_menu">
@@ -787,59 +787,60 @@ __    _          _       _   _       _
 									</p>
 								</div>
 								<div id="doc-history" class="doc-history">
-								<!-- jquery.bottom.js的な何かでロードする。 -->
-								<table class="gradient icon_table" summary="commit logs">
-									<thead>
-										<tr>
-											<th class="icon"></th>
-											<th class="auther">auther</th>
-											<th class="timestamp">timestamp</th>
-											<th class="commitmessage">message</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
-											<td>taichi 1</td>
-											<td>2011-08-31 12:31:24</td>
-											<td>yah!</td>
-										</tr>
-										<tr>
-											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
-											<td>taichi 2</td>
-											<td>2011-08-30 12:31:24</td>
-											<td>damn it!</td>
-										</tr>
-										<tr>
-											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
-											<td>taichi 3</td>
-											<td>2011-08-29 12:31:24</td>
-											<td>lol!</td>
-										</tr>
-										<tr>
-											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
-											<td>taichi 4</td>
-											<td>2011-08-28 12:31:24</td>
-											<td>help me!</td>
-										</tr>
-										<tr>
-											<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
-											<td>taichi 5</td>
-											<td>2011-08-27 12:31:24</td>
-											<td>fix bug!</td>
-										</tr>
-									</tbody>
-								</table>								</div>
+									<!-- jquery.bottom.js的な何かでロードする。 -->
+									<table class="gradient icon_table" summary="commit logs">
+										<thead>
+											<tr>
+												<th class="icon"></th>
+												<th class="auther">auther</th>
+												<th class="timestamp">timestamp</th>
+												<th class="commitmessage">message</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+												<td>taichi 1</td>
+												<td>2011-08-31 12:31:24</td>
+												<td>yah!</td>
+											</tr>
+											<tr>
+												<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+												<td>taichi 2</td>
+												<td>2011-08-30 12:31:24</td>
+												<td>damn it!</td>
+											</tr>
+											<tr>
+												<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+												<td>taichi 3</td>
+												<td>2011-08-29 12:31:24</td>
+												<td>lol!</td>
+											</tr>
+											<tr>
+												<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+												<td>taichi 4</td>
+												<td>2011-08-28 12:31:24</td>
+												<td>help me!</td>
+											</tr>
+											<tr>
+												<td><img src="images/taichi.png" width="30" height="30" alt="taichi"/></td>
+												<td>taichi 5</td>
+												<td>2011-08-27 12:31:24</td>
+												<td>fix bug!</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div><!-- <div id="doc_main_pane"> -->
-						<div id="doc_list_pane" style="display: none;">
+						<div id="doc_list_pane" class="tabpane">
 							ドキュメント一覧及び、インデックス的なアレ。
 							<br/>
 							構造化されたドキュメント構造を俯瞰出来る感じ。
 							<br/>
 							ファイラーのディレクトリツリーの様なものかもしれない。
 						</div>
-						<div id="doc_history_pane" style="display: none;">
+						<div id="doc_history_pane" class="tabpane">
 							<div class="topic">
 								<div class="repo-urls">
 									<div class="protocols">

@@ -222,6 +222,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		var path = el.getAttribute(active);
 		el.firstChild.src = path;
 		var next = el.getAttribute('for');
+
 		switchTab(projSideTab, next);
 	}
 
@@ -233,7 +234,7 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	goog.events.listen(projSideTab, goog.ui.Component.EventType.UNSELECT, function(e) {
 		switchProjectSideTab(e, "inactive");
 	});
-	projSideTab.setSelectedTabIndex(2);
+	projSideTab.setSelectedTabIndex(1);
 	goog.array.forEach(goog.dom.query('#sidemenu_projects a'), function(el) {
 		goog.events.listen(el, goog.events.EventType.CLICK, function(e) {
 			//e.preventDefault();
@@ -261,15 +262,18 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	projMainTab.decorate(goog.dom.getElement('project_main_tab'));
 
 	function switchTab(tabbar, next) {
-		function toggleTab(paneId, is) {
-			var content = goog.dom.getElement(paneId);
-			if(content) {
-				goog.style.showElement(content, is);
+		var f = function(paneId, is) {
+			var el = goog.dom.getElement(paneId);
+			if(el) {
+				if(is) {
+					goog.dom.classes.add(el, "active");
+				} else {
+					goog.dom.classes.remove(el, "active");
+				}
 			}
 		}
-
-		toggleTab(tabbar.currentPane, false);
-		toggleTab(next, true);
+		f(tabbar.currentPane, false);
+		f(next, true);
 		tabbar.currentPane = next;
 	}
 
