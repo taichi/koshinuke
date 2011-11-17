@@ -1,0 +1,37 @@
+
+.marker {
+  padding: 2px 3px;
+  font-size: x-small;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  #radius > .around(3px);
+
+  // status
+  &.open {
+    background-color: #98d98e;
+  }
+  &.progress {
+    background-color: #ebd842;
+  }
+  &.await {
+    background-color: #ee836f
+  }
+  &.closed {
+    background-color: #c0c6c9;
+  }
+  &.rejected {
+  	background-color: #dbd0e6;
+  }
+
+  // priorities
+  &.low {
+  	background-color: #887f7a;
+  }
+  &.normal {
+  	background-color: #1e50a2;
+  }
+  &.high {
+  	background-color: #a22041;
+  }
+}
