@@ -84,6 +84,20 @@
 	}
 }
 
+.task_lists {
+	th,td {
+		&.number {
+			text-align: right;
+		}
+		&.title, &.assingedto {
+			text-align: left;
+		}
+		&.status, &.priority, &.deadline {
+			text-align: center;
+		}
+	}
+}
+
 #editor-outer {
 	.active;
 	z-index: 2000;
