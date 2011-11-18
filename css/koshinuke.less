@@ -88,13 +88,18 @@
 	th,td {
 		&.number {
 			text-align: right;
+			width: 50px;
 		}
 		&.title, &.assingedto {
-			text-align: left;
 		}
 		&.status, &.priority, &.deadline {
-			text-align: center;
+			width: 70px;
 		}
+	}
+	td img {
+		width: 20px;
+		height: 20px;
+		margin: 0 auto;
 	}
 }
 
@@ -859,7 +864,7 @@ table {
   border-collapse: separate;
   font-size: 13px;
   th, td {
-    padding: 10px 10px 9px;
+    padding: 5px 5px 6px;
     line-height: @baseline * .75;
     text-align: left;
     vertical-align: middle;

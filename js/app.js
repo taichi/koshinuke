@@ -456,6 +456,16 @@ goog.exportSymbol('org.koshinuke.main', function() {
 	ttTab.setSelectedTabIndex(0);
 	//
 	//
+	(function() {
+		var component = new goog.ui.TableSorter();
+		component.decorate(goog.dom.getElement('task_lists'));
+		component.setDefaultSortFunction(goog.ui.TableSorter.alphaSort);
+		component.setSortFunction(0, goog.ui.TableSorter.numericSort);
+		component.setSortFunction(3, goog.ui.TableSorter.noSort);
+	})();
+
+	//
+	//
 	var docMainTab = new goog.ui.TabBar();
 	// hack
 	docMainTab.currentPane = 'doc_main_pane';
