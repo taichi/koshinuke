@@ -654,9 +654,50 @@ __    _          _       _   _       _
 						</div>
 						<div id="tt_list_pane" class="tabpane active">
 							<div class="tt_menu">
-								<div class="filters">
-									Filter
-								</div>
+								<fieldset id="status_filters" class="task_filters">
+									<div class="filter">
+										<label class="active">
+											<input type="checkbox" value="OPEN" checked="true"/>
+											<span class="desc">OPEN</span></label>
+									</div>
+									<div class="filter">
+										<label class="active">
+											<input type="checkbox" value="PROGRESS" checked="true"/>
+											<span class="desc">PROGRESS</span></label>
+									</div>
+									<div class="filter">
+										<label class="active">
+											<input type="checkbox" value="AWAIT" checked="true"/>
+											<span class="desc">AWAIT</span></label>
+									</div>
+									<div class="filter">
+										<label class="active">
+											<input type="checkbox" value="CLOSED" checked="true"/>
+											<span class="desc">CLOSED</span></label>
+									</div>
+									<div class="filter">
+										<label class="active ">
+											<input type="checkbox" value="REJECTED" checked="true"/>
+											<span class="desc">REJECTED</span></label>
+									</div>
+								</fieldset>
+								<fieldset id="priority_filters" class="task_filters">
+									<div class="filter">
+										<label class="active low">
+											<input type="checkbox" value="LOW" checked="true"/>
+											<span class="desc">LOW</span></label>
+									</div>
+									<div class="filter">
+										<label class="active normal">
+											<input type="checkbox" value="NORMAL" checked="true"/>
+											<span class="desc">NORMAL</span></label>
+									</div>
+									<div class="filter">
+										<label class="active high">
+											<input type="checkbox" value="HIGH" checked="true"/>
+											<span class="desc">HIGH</span></label>
+									</div>
+								</fieldset>
 								<ul>
 									<li>
 										<button id="tt_history" class="btn">

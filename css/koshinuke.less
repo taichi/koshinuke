@@ -276,16 +276,6 @@
 	}
 }
 
-.tt_menu {
-	height: 35px;
-	.filters {
-		display: inline;
-		color: @grayDark;
-		line-height: @baseline * 2;
-	}
-	.ulbuttons(@doc_button);
-}
-
 .doc_sidebar {
 	.clearfix;
 	float: left;
@@ -398,6 +388,49 @@
 	}
 }
 
+.tt_menu {
+	height: 35px;
+	margin-bottom: 5px;
+	.filters {
+		display: inline;
+		color: @grayDark;
+		line-height: @baseline * 2;
+	}
+	.ulbuttons(@doc_button);
+}
+
+.task_filters {
+	.user-select;
+	display: inline;
+	float: left;
+	#radius > .around(3px);
+	border: 1px solid #CCC;
+	padding: 3px;
+	margin-right: 5px;
+	.filter {
+		float: left;
+		margin: 1px 2px;
+		label {
+			display: block;
+			#radius > .around(3px);
+			border: 1px solid #CCC;
+			background: whitesmoke;
+			padding: 0 5px 0 0;
+			input[type=checkbox] {
+				margin: 5px 0px 5px 5px;
+			}
+			.desc {
+				vertical-align: 2px;				
+			}
+			&.active {
+				color: black;
+				background: lighten(@filter, 30);
+				border-color: @filter;
+			}
+		}
+	}
+}
+
 .label_filter {
 	.user-select;
 	float: left;
@@ -413,7 +446,6 @@
 	border: 1px solid #CCC;
 	padding: 3px 0px 3px 15px;
 	margin-left: 20px;
-	min-width: 467px;
 	.filter {
 		float: left;
 		margin: 1px 2px;
