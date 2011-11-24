@@ -1,37 +1,42 @@
-
 .marker {
-  padding: 2px 3px;
-  font-size: x-small;
-  font-weight: bold;
-  color: white;
-  text-transform: uppercase;
-  #radius > .around(3px);
+	padding: 2px 3px;
+	font-size: x-small;
+	font-weight: bold;
+	color: white;
+	text-transform: uppercase;
+	#radius > .around(3px);
+	border: 1px solid black;
 
-  // status
-  &.open {
-    background-color: #98d98e;
-  }
-  &.progress {
-    background-color: #ebd842;
-  }
-  &.await {
-    background-color: #ee836f
-  }
-  &.closed {
-    background-color: #c0c6c9;
-  }
-  &.rejected {
-  	background-color: #dbd0e6;
-  }
+	.markerbox(@color) {
+	    background-color: @color;
+	    border-color: darken(@color, 15%);
+	}
 
-  // priorities
-  &.low {
-  	background-color: #887f7a;
-  }
-  &.normal {
-  	background-color: #1e50a2;
-  }
-  &.high {
-  	background-color: #a22041;
-  }
+	// status
+	&.open {
+		.markerbox(#98d98e);
+	}
+	&.progress {
+		.markerbox(#ebd842);
+	}
+	&.await {
+		.markerbox(#ee836f);
+	}
+	&.closed {
+		.markerbox(#c0c6c9);
+	}
+	&.rejected {
+		.markerbox(#dbd0e6);
+	}
+
+	// priorities
+	&.low {
+		.markerbox(#887f7a);
+	}
+	&.normal {
+		.markerbox(#1e50a2);
+	}
+	&.high {
+		.markerbox(#a22041);
+	}
 }

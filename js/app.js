@@ -408,14 +408,15 @@ goog.exportSymbol('org.koshinuke.main', function() {
 
 	//
 	//
-	function updateFilter() {
-		var cond = goog.array.map(goog.array.filter(goog.dom.query("#branch_filters input"), function(v) {
+	function updateFilter(id, table) {
+		var condEl = goog.dom.getElement(id);
+		var cond = goog.array.map(goog.array.filter(goog.dom.query("input", condEl), function(v) {
 			return v.checked;
 		}), function(v) {
 			return v.value;
 		});
-
-		goog.array.forEach(goog.dom.query("#branch_table tbody tr"), function(row) {
+		var tableEL = goog.dom.getElement(table);
+		goog.array.forEach(goog.dom.query("tbody tr", tableEL), function(row) {
 			var shown = false;
 			goog.array.forEach(goog.dom.classes.get(row), function(v) {
 				shown |= goog.array.contains(cond, v);
@@ -424,20 +425,40 @@ goog.exportSymbol('org.koshinuke.main', function() {
 		});
 	}
 
-	updateFilter();
-
-	goog.events.listen(goog.dom.getElement('branch_filters'), goog.events.EventType.CLICK, function(e) {
-		var t = e.target;
-		if(t && t.value) {
-			var label = t.parentNode;
-			if(t.checked) {
-				goog.dom.classes.add(label, "active");
-			} else {
-				goog.dom.classes.remove(label, "active");
+	function listenFilterFn(fn, id) {
+		fn();
+		goog.events.listen(goog.dom.getElement(id), goog.events.EventType.CLICK, function(e) {
+			var t = e.target;
+			if(t && t.value) {
+				var label = t.parentNode;
+				if(t.checked) {
+					goog.dom.classes.add(label, "active");
+				} else {
+					goog.dom.classes.remove(label, "active");
+				}
+				fn();
 			}
-			updateFilter();
-		}
-	});
+		});
+	}
+
+	function updateBranchFilter() {
+		updateFilter("branch_filters", "branch_table");
+	}
+
+	listenFilterFn(updateBranchFilter, "branch_filters");
+	
+	function updateStatusFilter() {
+		updateFilter("status_filters", "task_lists");
+	}
+
+	listenFilterFn(updateStatusFilter, "status_filters");
+
+	function updatePriorityFilter() {
+		updateFilter("priority_filters", "task_lists");
+	}
+
+	listenFilterFn(updatePriorityFilter, "priority_filters");
+
 	//
 	//
 	goog.array.forEach(goog.dom.query('.icon_table'), function(el) {

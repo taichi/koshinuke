@@ -656,46 +656,46 @@ __    _          _       _   _       _
 							<div class="tt_menu">
 								<fieldset id="status_filters" class="task_filters">
 									<div class="filter">
-										<label class="active">
-											<input type="checkbox" value="OPEN" checked="true"/>
-											<span class="desc">OPEN</span></label>
+										<label class="active open">
+											<input type="checkbox" value="open" checked="true"/>
+											<span class="desc">open</span></label>
 									</div>
 									<div class="filter">
-										<label class="active">
-											<input type="checkbox" value="PROGRESS" checked="true"/>
-											<span class="desc">PROGRESS</span></label>
+										<label class="active progress">
+											<input type="checkbox" value="progress" checked="true"/>
+											<span class="desc">progress</span></label>
 									</div>
 									<div class="filter">
-										<label class="active">
-											<input type="checkbox" value="AWAIT" checked="true"/>
-											<span class="desc">AWAIT</span></label>
+										<label class="active await">
+											<input type="checkbox" value="await" checked="true"/>
+											<span class="desc">await</span></label>
 									</div>
 									<div class="filter">
-										<label class="active">
-											<input type="checkbox" value="CLOSED" checked="true"/>
-											<span class="desc">CLOSED</span></label>
+										<label class="closed">
+											<input type="checkbox" value="closed"/>
+											<span class="desc">closed</span></label>
 									</div>
 									<div class="filter">
-										<label class="active ">
-											<input type="checkbox" value="REJECTED" checked="true"/>
-											<span class="desc">REJECTED</span></label>
+										<label class="rejected">
+											<input type="checkbox" value="rejected"/>
+											<span class="desc">rejected</span></label>
 									</div>
 								</fieldset>
 								<fieldset id="priority_filters" class="task_filters">
 									<div class="filter">
-										<label class="active low">
-											<input type="checkbox" value="LOW" checked="true"/>
-											<span class="desc">LOW</span></label>
+										<label class="active high">
+											<input type="checkbox" value="high" checked="true"/>
+											<span class="desc">high</span></label>
 									</div>
 									<div class="filter">
 										<label class="active normal">
-											<input type="checkbox" value="NORMAL" checked="true"/>
-											<span class="desc">NORMAL</span></label>
+											<input type="checkbox" value="normal" checked="true"/>
+											<span class="desc">normal</span></label>
 									</div>
 									<div class="filter">
-										<label class="active high">
-											<input type="checkbox" value="HIGH" checked="true"/>
-											<span class="desc">HIGH</span></label>
+										<label class="low">
+											<input type="checkbox" value="low"/>
+											<span class="desc">low</span></label>
 									</div>
 								</fieldset>
 								<ul>
@@ -729,16 +729,16 @@ __    _          _       _   _       _
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									<tr class="open normal">
 										<td class="number">6</td>
 										<td class="title">バグを潰す</td>
 										<td class="status"><span class="marker open">Open</span></td>
 										<td><img src="images/taichi.png" alt="taichi"/></td>
 										<td class="assingedto">taichi</td>
-										<td class="priority"><span class="marker low">low</span></td>
+										<td class="priority"><span class="marker normal">normal</span></td>
 										<td class="deadline">2012/03/04</td>
 									</tr>
-									<tr>
+									<tr class="open low">
 										<td class="number">56</td>
 										<td class="title">バグを探す</td>
 										<td class="status"><span class="marker open">Open</span></td>
@@ -747,7 +747,7 @@ __    _          _       _   _       _
 										<td class="priority"><span class="marker low">low</span></td>
 										<td class="deadline">2012/03/04</td>
 									</tr>
-									<tr>
+									<tr class="progress normal">
 										<td class="number">318</td>
 										<td class="title">UIを作りこむ</td>
 										<td class="status"><span class="marker progress">progress</span></td>
@@ -756,7 +756,7 @@ __    _          _       _   _       _
 										<td class="priority"><span class="marker normal">Normal</span></td>
 										<td class="deadline">2011/11/01</td>
 									</tr>
-									<tr>
+									<tr class="await high">
 										<td class="number">4679</td>
 										<td class="title">仕様を決める</td>
 										<td class="status"><span class="marker await">AWAIT</span></td>
@@ -765,7 +765,7 @@ __    _          _       _   _       _
 										<td class="priority"><span class="marker high">HIGH!</span></td>
 										<td class="deadline">2012/03/04</td>
 									</tr>
-									<tr>
+									<tr class="rejected normal">
 										<td class="number">88243</td>
 										<td class="title">休みを取る</td>
 										<td class="status"><span class="marker rejected">rejected</span></td>
@@ -774,7 +774,7 @@ __    _          _       _   _       _
 										<td class="priority"><span class="marker normal">Normal</span></td>
 										<td class="deadline">2011/11/01</td>
 									</tr>
-									<tr>
+									<tr class="closed high">
 										<td class="number">91654</td>
 										<td class="title">サーバを買う</td>
 										<td class="status"><span class="marker closed">closed</span></td>
@@ -783,7 +783,7 @@ __    _          _       _   _       _
 										<td class="priority"><span class="marker high">HIGH!</span></td>
 										<td class="deadline">2011/11/05</td>
 									</tr>
-									<tr>
+									<tr class="rejected low">
 										<td class="number">100022</td>
 										<td class="title">無茶振りする</td>
 										<td class="status"><span class="marker rejected">rejected</span></td>
@@ -792,7 +792,7 @@ __    _          _       _   _       _
 										<td class="priority"><span class="marker low">low</span></td>
 										<td class="deadline">2011/11/20</td>
 									</tr>
-									<tr>
+									<tr class="progress normal">
 										<td class="number">3398713</td>
 										<td class="title">ログを解析する</td>
 										<td class="status"><span class="marker progress">progress</span></td>

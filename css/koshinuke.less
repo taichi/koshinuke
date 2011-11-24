@@ -415,6 +415,9 @@
 			#radius > .around(3px);
 			border: 1px solid #CCC;
 			background: whitesmoke;
+			font-weight: bold;
+			text-transform: uppercase;
+			
 			padding: 0 5px 0 0;
 			input[type=checkbox] {
 				margin: 5px 0px 5px 5px;
@@ -422,10 +425,44 @@
 			.desc {
 				vertical-align: 2px;				
 			}
+
 			&.active {
 				color: black;
-				background: lighten(@filter, 30);
-				border-color: @filter;
+				.markerbox(@color) {
+				    background-color: @color;
+				    border-color: darken(@color, 15%);
+				}
+			
+				// status
+				&.open {
+					.markerbox(#98d98e);
+				}
+				&.progress {
+					.markerbox(#ebd842);
+				}
+				&.await {
+					.markerbox(#ee836f);
+				}
+				&.closed {
+					.markerbox(#c0c6c9);
+				}
+				&.rejected {
+					.markerbox(#dbd0e6);
+				}
+			
+				// priorities
+				&.low {
+					color: white;
+					.markerbox(#887f7a);
+				}
+				&.normal {
+					color: white;
+					.markerbox(#1e50a2);
+				}
+				&.high {
+					color: white;
+					.markerbox(#a22041);
+				}
 			}
 		}
 	}
